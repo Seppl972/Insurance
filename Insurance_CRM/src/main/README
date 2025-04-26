@@ -27,6 +27,7 @@ Welcome to my first coding project! This Java-based application is designed to s
 
 - Object-oriented programming (OOP): Classes, inheritance, encapsulation, polymorphism  
 - Collections (e.g., ArrayList, HashMap) for data handling  
+   => trying to safe the addCustumor inputs into an array[]
 - Exception handling and validation  
 - Basic software architecture and modularization  
 - Input/output operations  

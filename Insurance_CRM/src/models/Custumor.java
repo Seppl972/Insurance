@@ -2,12 +2,24 @@ package models;
 
 public class Custumor extends CustumorMethods {
 
+	//Variablen deklarieren
+	int [] arrayCustumors;
+	public int id;
 	public static String name;
 	public int age;
 	public String place;
 	Boolean accident;
 	Double pension;
 	
+	//id
+	public int getId() {
+	return id;
+	}
+	public int setId() {
+	this.id = id;
+	return id;
+	}
+
 	//name
 	public String getName() {
 		return name;
@@ -54,16 +66,3 @@ public class Custumor extends CustumorMethods {
 	}
 	
 }
-
-/*
-
-	add()
-
-	update()
-
-	delete()
-	
-}
-
-
-*/

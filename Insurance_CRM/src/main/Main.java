@@ -18,26 +18,29 @@ public class Main extends Custumor {
 		//Variablen deklarieren
 		boolean software = true;
 		int answer;
-		String name;
-	
+		//int counter; eventuell einbauen zum zählen (Inkrementieren)
+		
 		while (software == true) {
 		//Eröffnungstext
-		System.out.println("Hello Sebastian, what do you want to do?");
-		System.out.println("1. Add a new customor \n2. Update a custumor \n3. Delete a customor");
+		System.out.println("\nHello Sebastian, i hope you're doing fine today. \nWhat do you want to do?\n");
+		System.out.println("0. Search for an customor \n1. Add a new customor \n2. Update a custumor \n3. Delete a customor");
 
 		//Benutzereingabe über Scanner		
 		Scanner scan1 = new Scanner(System.in);
 		answer = scan1.nextInt();
-		
+
 		//Auswahlmöglichkeiten
-		optionchose(answer);	
+		optionchose(answer);
 		}
 		
 	}
 		
-		//Auswahlmöglichkeiten
+	//Auswahlmöglichkeiten
 	public static void optionchose(int answer) {	
-		if (answer == 1) {
+		if (answer == 0) {
+			searchCustumor();
+		}
+		else if (answer == 1) {
 			addCustumor();
 		}
 		else if (answer == 2) {
@@ -46,16 +49,19 @@ public class Main extends Custumor {
 		else if (answer == 3) {
 			deleteCustumor();
 		}
-		
-		/*Ausnahmen
+		else if (answer == 4) {
+			System.out.println("Not ready yet!");
+		}
+		else if (answer == 5) {
+			System.out.println("Not ready yet!");
+		}
 		else {
-			System.out.println("Choose the right option again!");
-			System.out.println("Sers");
-		optionchose();
-		}*/
+			System.out.println(" This method doesnt exist!\n");
+			System.out.println("Please type in the right number!");
+		}
 	} 
-	
 }
+
 		
 /* todo's'
 
