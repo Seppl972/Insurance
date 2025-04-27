@@ -3,7 +3,7 @@ package services;
 import java.util.Scanner;
 import models.Custumor;
 
-public class CustomorService {
+public class CustumorService {
 
 	public static String name;
 	public static int id;
