@@ -68,8 +68,9 @@ public class CustomorService {
 
 		Custumor newCustumor = new Custumor(newid, inputName, inputAge, inputPlace);
 		System.out.println("User has been created succesfully!");
-		//int newid, String newname, int 
-}
+		
+
+	}
 
 	//Methode zur Benutzeraktualisierung - nicht fertig - (Umfangreich, ggfs. nur einzelne Sachen updaten?)
 	/*public static void updateCustumor() {
