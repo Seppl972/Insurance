@@ -2,7 +2,7 @@ package models;
 
 
 // versuchen die Klassen übersichtlich zu halten!
-public class Custumor {
+public class Customor {
 
 	// Variablen deklarieren //static entfernt
 	public int id;
@@ -13,10 +13,10 @@ public class Custumor {
 	//private Double pension;
 	
 	//Konstruktoren
-	public Custumor () {
+	public Customor () {
 		System.out.println("Leerer Konstruktor");
 	}
-	public Custumor (int id, String name, int age, String place) {
+	public Customor (int id, String name, int age, String place) {
 		this.id = id;
 		this.name = name;
 		this.age = age;

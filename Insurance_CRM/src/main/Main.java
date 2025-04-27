@@ -22,10 +22,10 @@ public class Main {
 		while (software == true) {
 		//Eröffnungstext
 		System.out.println("\nHello Sebastian, I hope you're doing fine. \nHow can I help you?\n");
-		System.out.println("0. Search for an existing customor");
-		System.out.println("1. Add a new customor");
+		System.out.println("0. Search for an existing custumor");
+		System.out.println("1. Add a new custumor");
 		System.out.println("2. Update an existing custumor");
-		System.out.println("3. Delete an existing customor\n");
+		System.out.println("3. Delete an existing custumor\n");
 
 		//Benutzereingabe über Scanner		
 		Scanner scan1 = new Scanner(System.in);

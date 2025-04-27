@@ -567,7 +567,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </UML:Class>
 <UML:ClassItem id="587f4e50-2212-11f0-a176-23c89d702c29">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 593.729387669045, 580.5464216864697)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 593.729387669045, 580.5464216864696)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -891,7 +891,7 @@ existing classes or even new classes with specific responsibilities.</val>
 </UML:Class>
 <UML:ClassItem id="a69e7ad1-2341-11f0-9745-bf2482e33b37">
 <matrix>
-<val>(1.0, 0.0, 0.0, 1.0, 337.67678480264857, 580.5464216864696)</val>
+<val>(1.0, 0.0, 0.0, 1.0, 337.57415189536204, 580.5464216864696)</val>
 </matrix>
 <top-left>
 <val>(0.0, 0.0)</val>
@@ -1612,7 +1612,7 @@ existing classes or even new classes with specific responsibilities.</val>
 <ref refid="a69e2611-2341-11f0-9c69-bf2482e33b37"/>
 </class_>
 <name>
-<val>printCustumorData</val>
+<val>arrayAusgeben</val>
 </name>
 </UML:Operation>
 <UML:Property id="41f285cc-236d-11f0-8da2-bf2482e33b37">

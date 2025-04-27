@@ -1,16 +1,16 @@
 package services;
 
 import java.util.Scanner;
-import models.Custumor;
+import models.Customor;
 
-public class CustumorService {
+public class CustomorService {
 
 	public static String name;
-	public static int id;
-
-	//Arrays
-	public static int [] arrayCustumorId = {1, 2, 3, 4, 5, 6};
-	public static Custumor[] users = new Custumor[9];
+	static int arraycounter = 0;
+	
+	//Arrays in progress
+	public static int [] arrayCustumorId = {};
+	public static Customor[] users = new Customor[9];
 
 	//Methode zum suchen einer ID in einfachen int Strings {1, 2, 3,..}
 	public static void searchCustumor() {
@@ -44,6 +44,14 @@ public class CustumorService {
 		}
 	}
 
+	//Methode zum Array-Stelle-x ausgeben
+	public static void arrayAusgeben(int arrayStelle) {
+		System.out.println("ID: "+users[arrayStelle].id);
+		System.out.println("Name: "+users[arrayStelle].name);
+		System.out.println("Age: "+users[arrayStelle].age);
+		System.out.println("Place: "+users[arrayStelle].place);
+	}
+
 	//Methode zum hinzufügen eines Kunden - funktioniert mit neuem Konstruktor!!
 	public static void addCustumor() {
 	
@@ -73,12 +81,13 @@ public class CustumorService {
 		System.out.println();
 
 		//Objekt Custumor erzeugen (wird ausgegeben)
-		Custumor newCustumor = new Custumor(newid, inputName, inputAge, inputPlace);
+		Customor newCustumor = new Customor(newid, inputName, inputAge, inputPlace);
 
 		//Objekt im Array speichern, fängt bei Stelle 0 an
-		int i = 0;
-		users[i] = newCustumor;
-		i++;
+		//for (int i = 0; i < users.length; i++) {
+		users[arraycounter] = newCustumor;
+		arrayAusgeben(arraycounter); //zum Testen doppelt ausgeben
+		
 		System.out.println("User has been created succesfully!");
 		
 	}
