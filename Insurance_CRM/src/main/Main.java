@@ -1,10 +1,9 @@
 package main;
 
 import java.util.Scanner;
-import models.Custumor;
+import services.CustomorService;
  
-
-public class Main extends Custumor {
+public class Main {
 
 	public static void main(String[] args) {
 
@@ -22,44 +21,45 @@ public class Main extends Custumor {
 		
 		while (software == true) {
 		//Eröffnungstext
-		System.out.println("\nHello Sebastian, i hope you're doing fine today. \nWhat do you want to do?\n");
-		System.out.println("0. Search for an customor \n1. Add a new customor \n2. Update a custumor \n3. Delete a customor");
+		System.out.println("\nHello Sebastian, I hope you're doing fine. \nHow can I help you?\n");
+		System.out.println("0. Search for an existing customor");
+		System.out.println("1. Add a new customor");
+		System.out.println("2. Update an existing custumor");
+		System.out.println("3. Delete an existing customor\n");
 
 		//Benutzereingabe über Scanner		
 		Scanner scan1 = new Scanner(System.in);
 		answer = scan1.nextInt();
 
-		//Auswahlmöglichkeiten
-		optionchose(answer);
+		//Auswahlmöglichkeiten Kundenprofil
+		manageCustumorProfiles(answer);
 		}
 		
 	}
 		
-	//Auswahlmöglichkeiten
-	public static void optionchose(int answer) {	
+	//Auswahlmöglichkeiten Kundenprofil
+	public static void manageCustumorProfiles (int answer) {	
+
+		//Switch einbauen? 
 		if (answer == 0) {
-			searchCustumor();
+			CustomorService.searchCustumor();
 		}
 		else if (answer == 1) {
-			addCustumor();
+			CustomorService.addCustumor();
 		}
-		else if (answer == 2) {
+		/*else if (answer == 2) {
 			updateCustumor();
-		}
+		}*/
 		else if (answer == 3) {
-			deleteCustumor();
-		}
-		else if (answer == 4) {
-			System.out.println("Not ready yet!");
-		}
-		else if (answer == 5) {
-			System.out.println("Not ready yet!");
+			CustomorService.deleteCustumor();
 		}
 		else {
-			System.out.println(" This method doesnt exist!\n");
+			System.out.println(" The Exception-method doesnt exist yet!\n");
 			System.out.println("Please type in the right number!");
 		}
-	} 
+		
+	}
+
 }
 
 		

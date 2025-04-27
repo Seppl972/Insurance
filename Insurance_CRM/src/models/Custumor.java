@@ -1,26 +1,43 @@
 package models;
 
-public class Custumor extends CustumorMethods {
 
-	//Variablen deklarieren
-	int [] arrayCustumors;
+// versuchen die Klassen übersichtlich zu halten!
+public class Custumor {
+
+	// Variablen deklarieren //static entfernt
 	public int id;
-	public static String name;
+	public String name;
 	public int age;
 	public String place;
-	Boolean accident;
-	Double pension;
+	//private boolean accident;
+	//private Double pension;
 	
-	//id
-	public int getId() {
-	return id;
+	//Konstruktoren
+	public Custumor () {
+		System.out.println("Leerer Konstruktor");
 	}
-	public int setId() {
-	this.id = id;
-	return id;
+	public Custumor (int id, String name, int age, String place) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.place = place;
+		System.out.println("ID: "+id);
+		System.out.println("Name: "+name);
+		System.out.println("Age: "+age);
+		System.out.println("Place: "+place);
 	}
 
-	//name
+	// Getter & Setter
+	// id
+	public int getId() {
+		return id;
+	}
+	public int setId() {
+		this.id = id;
+		return id;
+	}
+
+	// name
 	public String getName() {
 		return name;
 	}
@@ -29,7 +46,7 @@ public class Custumor extends CustumorMethods {
 		return name;
 	}
 	
-	//age
+	// age
 	int getAge() {
 		return age;
 	}
@@ -38,7 +55,7 @@ public class Custumor extends CustumorMethods {
 		return age;	
 	}
 	
-	//place
+	// place
 	String getPlace() {
 		return place;
 	}
@@ -47,22 +64,22 @@ public class Custumor extends CustumorMethods {
 		return place;
 	}
 	
-	//accident
+	/*accident
 	Boolean getAccident() {
 		return accident;
 	}
 	Boolean setAccident() {
 		this.accident = accident;
 		return accident;
-	}
+	}*/
 	
-	//pension
+	/*pension
 	Double getPension() {
 		return pension;
 	}
 	Double setPension() {
 		this.pension = pension;
 		return pension;
-	}
-	
+	}*/
+
 }
