@@ -47,19 +47,19 @@ public class Custumor {
 	}
 	
 	// age
-	int getAge() {
+	public int getAge() {
 		return age;
 	}
-	int setAge() {
+	public int setAge() {
 		this.age =  age;
 		return age;	
 	}
 	
 	// place
-	String getPlace() {
+	public String getPlace() {
 		return place;
 	}
-	String setPlace() {
+	public String setPlace() {
 		this.place = place;
 		return place;
 	}

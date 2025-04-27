@@ -6,13 +6,13 @@ import models.Custumor;
 public class CustomorService {
 
 	public static String name;
-	//public static int id;
+	public static int id;
 
-	//Vorgegebenes Arrays, später soll dieses durch Methoden im Programm bearbeitet werden können
+	//Arrays
 	public static int [] arrayCustumorId = {1, 2, 3, 4, 5, 6};
-	public static String [] arrayCustumorName = new String[100];
-	
-	//Methode zum suchen einer ID - soweit fertig
+	public static Custumor[] users = new Custumor[9];
+
+	//Methode zum suchen einer ID in einfachen int Strings {1, 2, 3,..}
 	public static void searchCustumor() {
 	
 		//Variablen deklarieren
@@ -22,7 +22,8 @@ public class CustomorService {
 		//Speicherung der Eingabe Id
 		Scanner oldid = new Scanner(System.in);
 		inputId = oldid.nextInt();
-		//Im Array nachsehen mit for-Schleife
+		
+		//In basic_array nachsehen mit for-Schleife
 		boolean cusExist = false;
 		for (int id : arrayCustumorId) {
 			if (inputId == id) {
@@ -30,9 +31,14 @@ public class CustomorService {
 				break; //Sobald die Zahl gefunden ist Schleife beenden
 			}
 		}
-		//Textausgabe gefunden/nicht gefunden
+		//Textausgabe User, wenn ID gefunden
 		if (cusExist) {
 			System.out.println(inputId + " was found in the array!");
+			System.out.println("ID: "+users[0].id);
+			System.out.println("Name: "+users[0].name);
+			System.out.println("Age: "+users[0].age);
+			System.out.println("Place: "+users[0].place);
+
 		} else {
 			System.out.println(inputId + " is no valid CustumorID!");
 		}
@@ -66,10 +72,15 @@ public class CustomorService {
 		String inputPlace = newplace.nextLine();
 		System.out.println();
 
+		//Objekt Custumor erzeugen (wird ausgegeben)
 		Custumor newCustumor = new Custumor(newid, inputName, inputAge, inputPlace);
+
+		//Objekt im Array speichern, fängt bei Stelle 0 an
+		int i = 0;
+		users[i] = newCustumor;
+		i++;
 		System.out.println("User has been created succesfully!");
 		
-
 	}
 
 	//Methode zur Benutzeraktualisierung - nicht fertig - (Umfangreich, ggfs. nur einzelne Sachen updaten?)
@@ -160,13 +171,4 @@ public class CustomorService {
 		System.out.println(deletedId + " has been succesfully deleted from the system!\n");
 	}
 
-	//Methode zum ausgeben eines Custumor anhand der id
-	public static void printCustumorData(int id) {
-		//System.out.println(Custumor.id);
-		//System.out.println(Custumor.age);
-		//System.out.println(Custumor.place);
-		//System.out.println(Custumor.accident);
-		//System.out.println(Custumor.pension);
-	}
-		
 }

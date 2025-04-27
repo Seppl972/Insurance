@@ -54,7 +54,7 @@ public class Main {
 			CustomorService.deleteCustumor();
 		}
 		else {
-			System.out.println(" The Exception-method doesnt exist yet!\n");
+			System.out.println("The Exception-method doesnt exist yet!");
 			System.out.println("Please type in the right number!");
 		}
 		
