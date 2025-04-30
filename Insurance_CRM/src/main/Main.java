@@ -11,7 +11,7 @@ public class Main {
 				
 	}
 
-	//Startmaske
+	//Startmaske der Anwendung
 	public static void programmStart() {
 		
 		//Variablen deklarieren
@@ -19,8 +19,8 @@ public class Main {
 		int answer;
 		//int counter; eventuell einbauen zum zählen (Inkrementieren)
 		
+		//Eröffnungstext des Startmenüs (wird nach jeder Methode wieder neu angezeigt)
 		while (software == true) {
-		//Eröffnungstext
 		System.out.println("\nHello Sebastian, I hope you're doing fine. \nHow can I help you?\n");
 		System.out.println("0. Search for an existing custumor");
 		System.out.println("1. Add a new custumor");
@@ -37,23 +37,24 @@ public class Main {
 		
 	}
 		
-	//Auswahlmöglichkeiten Kundenprofil
+	//Auswahlmöglichkeiten der Kundenprofil-Methoden
 	public static void manageCustumorProfiles (int answer) {	
 
-		//Switch einbauen? 
-		if (answer == 0) {
+		//CustumorService-Methoden werden per switch als Zahl aufgerufen
+		switch (answer) {
+		case 0: 
 			CustomorService.searchCustumor();
-		}
-		else if (answer == 1) {
-			CustomorService.addCustumor();
-		}
-		/*else if (answer == 2) {
-			updateCustumor();
-		}*/
-		else if (answer == 3) {
+			break;
+		case 1: 
+			CustomorService.addCustumor();	
+			break;
+		case 2:
+			CustomorService.updateCustumor();
+			break;
+		case 3: 
 			CustomorService.deleteCustumor();
-		}
-		else {
+			break;
+		default: 
 			System.out.println("The Exception-method doesnt exist yet!");
 			System.out.println("Please type in the right number!");
 		}
@@ -61,7 +62,6 @@ public class Main {
 	}
 
 }
-
 		
 /* todo's'
 

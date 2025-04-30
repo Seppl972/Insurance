@@ -1,11 +1,12 @@
 package services;
 
 import java.util.Scanner;
+import main.Main; //import static main.Main.programmStart;
 import models.Customor;
 
-public class CustomorService {
+public class CustomorService extends Customor{
 
-	public static String name;
+	public static int inputId;
 	static int arraycounter = 0;
 	
 	//Arrays in progress
@@ -19,24 +20,23 @@ public class CustomorService {
 		System.out.println("Place: "+users[arrayStelle].place);
 	}
 
-	//Methode zum suchen einer ID in einfachen int Strings {1, 2, 3,..}
+	//Methode zum suchen einer ID im Objekt-Array (mithilfe des inkrementierten arrayounters)
 	public static void searchCustumor() {
-		//Variablen deklarieren
-		int inputId;
 		//Nachfrage nach bestehender Id
-		System.out.println("\nPlease give me the CustumorID:\n");
-		//Speicherung der Eingabe Id
+		System.out.println("\nPlease give me a CustumorID:\n");
+		//Speicherung der Eingabe Id mithilfe eines Scanners (Optional BufferedReader einbauen)
 		Scanner oldid = new Scanner(System.in);
 		inputId = oldid.nextInt();
 		//Ausgabe der arrayStelle anhand der ID (mithilfe des arrayounters)
 		if (inputId <= arraycounter) {
+			System.out.println("The following user was found!");	
 			arrayAusgeben(inputId-1);
 		} else {
 			System.out.println("UserID wasn't found in the array!");	
 		} 
 	}
 	
-	//Methode zum hinzufügen eines Kunden - funktioniert mit neuem Konstruktor!!
+	//Methode zum hinzufügen eines neuen Kunden - fertig
 	public static void addCustumor() {
 	
 		//Userbestand anzeigen (mithilfe des arrayounters)
@@ -46,31 +46,31 @@ public class CustomorService {
 		} else {
 			for (int i = 0; i < arraycounter; i++) {
 				System.out.print(users[i].id + ", ");
-				}
+			}
 		}
 
 		//addID
 		int newid = arraycounter + 1;
-		System.out.println("\n\n" + newid + " is the next free ID!");
+		System.out.println("\n" + newid + " is the next free ID!");
 		System.out.println(newid + " will be used for the newCustumorId.");
 
 		//addName
-		System.out.println("\nWhat is his name?\n");
+		System.out.println("\nWhat is his name?");
 		Scanner newname = new Scanner(System.in);
 		String inputName = newname.nextLine();
 
 		//addAge
-		System.out.println("\nWhat is his age?\n");
+		System.out.println("\nWhat is his age?");
 		Scanner newage = new Scanner(System.in);
 		int inputAge = newage.nextInt();
 
 		//addPlace
-		System.out.println("\nWhat is his place?\n");
+		System.out.println("\nWhat is his place?");
 		Scanner newplace = new Scanner(System.in);
 		String inputPlace = newplace.nextLine();
 		System.out.println();
 
-		//neues Objekt Custumor erzeugen (Konstruktor wird autom. ausgegeben)
+		//neues Objekt Custumor erzeugen (neues Objekt wird i.V.m. Konstruktor autom. ausgegeben)
 		Customor newCustumor = new Customor(newid, inputName, inputAge, inputPlace);
 
 		//neues Objekt im Array speichern, fängt bei Stelle 0 (inkrementiert mithilfe des arrayounters)
@@ -80,84 +80,80 @@ public class CustomorService {
 		
 	}
 
-	//Methode zur Benutzeraktualisierung - nicht fertig - (Umfangreich, ggfs. nur einzelne Sachen updaten?)
-	/*public static void updateCustumor() {
-	int update;
-	String updatedname;
-	int updatedage;
-	String updatedplace;
-	String deletedname;
-			
-	//String updatedaccident;
-	//Double updatedpension;
-	
-	//Nachfrage zum aktualisieren (Erstmal ohne Speicherung den eigenen Daten in z.B. Arrays
-	//Später Speicherung in JDBC vorstellbar
-	System.out.println("\nWhat do you want to update?");
-	System.out.println("Please choose between:");
-	System.out.println("0. id");
-	System.out.println("1. name");
-	System.out.println("2. age");
-	System.out.println("3. place");
-	System.out.println("4. accident");
-	System.out.println("5. pension\n");
-	Scanner newupdate = new Scanner(System.in);
-	update = newupdate.nextInt();
-	
-	if (update == 0) {
-		updateId();
-	}
-	else if (update == 1) {
-		updateName();
-	}
-	else if (update == 2){
-		updateAge();
-	}
-	else if (update == 3) {
-		updatePlace();
-	}
-	//4. boolean accident
-	//5. double pension
-	}	
-	
-		public static void updateId() {
-			System.out.println("Methode noch nicht fertig");
+	//Methode zur Benutzeraktualisierung einzelner Datenfelder/Array>Objekten>Variablen)
+	public static void updateCustumor() {
+		System.out.println("\nWhich Custumor do you want to update?");
+
+		//Speicherung der Eingabe Id
+		Scanner consistingId = new Scanner(System.in);
+		int inputId = consistingId.nextInt();
+
+		//Änderungsmöglichkeiten
+		if (inputId <= arraycounter) {
+			System.out.println("\nUser "+inputId+" was found in the System!");	
+			arrayAusgeben(inputId-1);
+			System.out.println("\nWhat do you want to change? \nPlease press one of the following keys!");
+			System.out.println("0. ID");
+			System.out.println("1. Name");
+			System.out.println("2. Age");
+			System.out.println("3. Place");
+			System.out.println("4. Back");
+
+		} else {
+			System.out.println("The UsedID doesn't exist!");	
+		} 
+
+		Scanner updateUser = new Scanner(System.in);
+		int updateUserField = updateUser.nextInt();
+
+		switch(updateUserField) {
+			case 0: //UserId updaten
+				//Funktioniert nicht richtig wegen arrayAusgeben-Methode
+				System.out.println("\nWhat should be the new ID?");
+				Scanner updateUserId = new Scanner(System.in);
+				int updateUserFieldId = updateUserId.nextInt();
+				System.out.println("\nOldID: "+inputId);
+				users[inputId-1].id = updateUserFieldId;
+				System.out.println("NewID: "+updateUserFieldId);
+				System.out.println("UserID was changed succesfully!");
+				break;
+			case 1: //Name updaten
+				//Ändert den Namen im Dialog und im Datenbestand?
+				System.out.println("\nWhat should be the new name?");
+				Scanner updateUserName = new Scanner(System.in);
+				String updateUserFieldName = updateUserName.nextLine();
+				System.out.println("\nOldName: "+users[inputId-1].name);
+				users[inputId-1].name = updateUserFieldName;
+				System.out.println("NewName: "+updateUserFieldName);
+				System.out.println("Name was changed succesfully!");
+				break;
+			case 2: //Age updaten
+				//Ändert Alter im Dialog und im Datenbestand
+				System.out.println("\nWhat should be the new age?");
+				Scanner updateUserAge = new Scanner(System.in);
+				int updateUserFieldAge = updateUserAge.nextInt();
+				System.out.println("\nOldAge: "+users[inputId-1].age);
+				users[inputId-1].age = updateUserFieldAge;
+				System.out.println("NewAge: "+updateUserFieldAge);
+				System.out.println("Age was changed succesfully!");
+				break;
+			case 3: //Place updaten
+				System.out.println("\nWhat should be the new place?");
+				Scanner updateUserPlace = new Scanner(System.in);
+				String updateUserFieldPlace = updateUserPlace.nextLine();
+				System.out.println("\nOldPlace: "+users[inputId-1].place);
+				users[inputId-1].place = updateUserFieldPlace;
+				System.out.println("NewAge: "+updateUserFieldPlace);
+				System.out.println("Place was changed succesfully!");
+				break;
+			case 4: //Zurück
+				Main.programmStart();
+
 		}
 
-		public static void updateName() {
-			Custumor One = new Custumor();
-			System.out.println("\nPlease type in the new name!");
+	}
 	
-			Scanner newupdate = new Scanner(System.in);
-			name = newupdate.nextLine();
-	
-			System.out.println(name + " is now the new Name!\n");
-		}		
-	
-		public static void updateAge() {
-			Custumor One = new Custumor();
-			System.out.println("Please type in the new age!");
-	
-			Scanner updatedage = new Scanner(System.in);
-			One.age = updatedage.nextInt();
-	
-			System.out.println(One.age + " is now the new age!\n");
-		}
-	
-		public static void updatePlace() {
-			Custumor One = new Custumor();
-			System.out.println("Please type in the new place!");
-	
-		Scanner updatedplace= new Scanner(System.in);
-		One.place = updatedplace.nextLine();
-	
-		System.out.println(One.place + " is now the new place!\n");
-		}
-		//Update 4. accident ergänzen
-		//Update 5. pension ergänzen
-		*/
-	
-	//Methode zur Benutzerlöschung - Verweis auf arrayCustumorId fehlt
+	//Methode zur Benutzerlöschung - Objekt aus array entfernen?
 	public static void deleteCustumor() {
 		System.out.println("\nWhich Custumor do you want to delete?");
 			
