@@ -16,6 +16,7 @@ public class Customor {
 	public Customor () {
 		System.out.println("Leerer Konstruktor");
 	}
+	
 	public Customor (int id, String name, int age, String place) {
 		this.id = id;
 		this.name = name;

@@ -9,40 +9,7 @@ public class CustomorService {
 	static int arraycounter = 0;
 	
 	//Arrays in progress
-	public static int [] arrayCustumorId = {};
 	public static Customor[] users = new Customor[9];
-
-	//Methode zum suchen einer ID in einfachen int Strings {1, 2, 3,..}
-	public static void searchCustumor() {
-	
-		//Variablen deklarieren
-		int inputId;
-		//Nachfrage nach bestehender Id
-		System.out.println("\nPlease give me the CustumorID:\n");
-		//Speicherung der Eingabe Id
-		Scanner oldid = new Scanner(System.in);
-		inputId = oldid.nextInt();
-		
-		//In basic_array nachsehen mit for-Schleife
-		boolean cusExist = false;
-		for (int id : arrayCustumorId) {
-			if (inputId == id) {
-				cusExist = true;
-				break; //Sobald die Zahl gefunden ist Schleife beenden
-			}
-		}
-		//Textausgabe User, wenn ID gefunden
-		if (cusExist) {
-			System.out.println(inputId + " was found in the array!");
-			System.out.println("ID: "+users[0].id);
-			System.out.println("Name: "+users[0].name);
-			System.out.println("Age: "+users[0].age);
-			System.out.println("Place: "+users[0].place);
-
-		} else {
-			System.out.println(inputId + " is no valid CustumorID!");
-		}
-	}
 
 	//Methode zum Array-Stelle-x ausgeben
 	public static void arrayAusgeben(int arrayStelle) {
@@ -52,15 +19,38 @@ public class CustomorService {
 		System.out.println("Place: "+users[arrayStelle].place);
 	}
 
+	//Methode zum suchen einer ID in einfachen int Strings {1, 2, 3,..}
+	public static void searchCustumor() {
+		//Variablen deklarieren
+		int inputId;
+		//Nachfrage nach bestehender Id
+		System.out.println("\nPlease give me the CustumorID:\n");
+		//Speicherung der Eingabe Id
+		Scanner oldid = new Scanner(System.in);
+		inputId = oldid.nextInt();
+		//Ausgabe der arrayStelle anhand der ID (mithilfe des arrayounters)
+		if (inputId <= arraycounter) {
+			arrayAusgeben(inputId-1);
+		} else {
+			System.out.println("UserID wasn't found in the array!");	
+		} 
+	}
+	
 	//Methode zum hinzufügen eines Kunden - funktioniert mit neuem Konstruktor!!
 	public static void addCustumor() {
 	
-		//addID
+		//Userbestand anzeigen (mithilfe des arrayounters)
 		System.out.println("\nThe following ID's are already used in the system!");
-		for (int i = 0; i < arrayCustumorId.length; i++) {
-		System.out.print(arrayCustumorId[i] + ", ");
+		if (arraycounter == 0) {
+			System.out.println("There are no users in the system yet!");
+		} else {
+			for (int i = 0; i < arraycounter; i++) {
+				System.out.print(users[i].id + ", ");
+				}
 		}
-		int newid = arrayCustumorId.length + 1;
+
+		//addID
+		int newid = arraycounter + 1;
 		System.out.println("\n\n" + newid + " is the next free ID!");
 		System.out.println(newid + " will be used for the newCustumorId.");
 
@@ -80,15 +70,13 @@ public class CustomorService {
 		String inputPlace = newplace.nextLine();
 		System.out.println();
 
-		//Objekt Custumor erzeugen (wird ausgegeben)
+		//neues Objekt Custumor erzeugen (Konstruktor wird autom. ausgegeben)
 		Customor newCustumor = new Customor(newid, inputName, inputAge, inputPlace);
 
-		//Objekt im Array speichern, fängt bei Stelle 0 an
-		//for (int i = 0; i < users.length; i++) {
+		//neues Objekt im Array speichern, fängt bei Stelle 0 (inkrementiert mithilfe des arrayounters)
 		users[arraycounter] = newCustumor;
-		arrayAusgeben(arraycounter); //zum Testen doppelt ausgeben
-		
-		System.out.println("User has been created succesfully!");
+		arraycounter++;		
+		System.out.println("User " + arraycounter + " has been created succesfully!");
 		
 	}
 
