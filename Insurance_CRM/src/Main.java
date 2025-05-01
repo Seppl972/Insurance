@@ -1,38 +1,28 @@
-import java.awt.EventQueue;
-import java.util.Scanner;
+package src;
 
-import javax.swing.JFrame.*;
+import java.util.Scanner;
 import javax.swing.*;
+import src.services.CustomorService;
 
 //GUI bauen, schwieriger als gedacht
  
 public class Main extends JFrame {
 
-	public Main() {
-		setTitle("Unsere GUI");
-		setSize(1920, 1080);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-		//Container
-	}
-
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				Main m = new Main();
-				m.setVisible(true);
-				//programmStart();
-			}
-		});
+		
+		JFrame frame = new JFrame("Insurance CRM");
+
+		frame.setSize(1920, 1080);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+
 	}
 
 	//Startmaske der Anwendung
 	public static void programmStart() {
-		
-		
+				
 		//Variablen deklarieren
 		boolean software = true;
 		int answer;
@@ -87,22 +77,6 @@ public class Main extends JFrame {
 		return answer;
 		
 	}
-
-    private static void setSize(int i, int i0) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    private static void setLocationRelativeTo(Object object) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    private static void setDefaultCloseOperation(int EXIT_ON_CLOSE) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    private void setVisible(boolean b) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
 }
 		

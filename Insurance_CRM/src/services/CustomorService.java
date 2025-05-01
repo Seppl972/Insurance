@@ -1,9 +1,8 @@
-package services;
+package src.services;
 
 import java.util.Scanner;
-import Main.programmStart;; //import static main.Main.programmStart;
-import models.Customor;
-utils
+import src.Main;
+import src.models.Customor;
 
 public class CustomorService extends Customor{
 

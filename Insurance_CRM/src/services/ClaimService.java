@@ -1,4 +1,4 @@
-package services;
+package src.services;
 
 public class ClaimService {
 
