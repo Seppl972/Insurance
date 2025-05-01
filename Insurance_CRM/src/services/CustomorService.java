@@ -5,6 +5,8 @@ import java.util.Scanner;
 import src.Main.*;
 import src.models.Customor;
 
+//Klasse CustumorService ist aktuell auf Terminal-Anwendung spezialisiert
+//Mal schauen inwiefern sich die Methoden migrieren lassen in die neue GUI-Anwendung
 public class CustomorService extends Customor{
 
 	public static int inputId;
