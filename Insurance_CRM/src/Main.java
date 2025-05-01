@@ -1,26 +1,110 @@
 package src;
 
-import java.util.Scanner;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
-import src.services.CustomorService;
 
-//GUI bauen, schwieriger als gedacht
- 
-public class Main extends JFrame {
+public class Main extends JFrame implements ActionListener {
 
-	public static void main(String[] args) {
-		
-		JFrame frame = new JFrame("Insurance CRM");
+	//SWING GUI deklarieren
+	JFrame frame;
+	JTextField textField;
+	JButton[] buttonArray = new JButton[6];
+	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton, resetCustumorFieldButton;
+	
+	JPanel panel;
 
-		frame.setSize(1920, 1080);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
+	Font myFont = new Font("Ink Free", Font.BOLD,20);
+	Color myBlue = new Color(30, 144, 255); // Dodger Blue
+
+	public Main() {
+		//GUI Rahmen erstellen
+		frame = new JFrame("Insurance CRM");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(500, 500);
+		frame.setBackground(myBlue);
+		frame.getContentPane().setBackground(Color.BLUE);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(true);
+		frame.setVisible(true);
+		frame.setLayout(null);
+
+
+		//GUI Textfeld erstellen
+		textField = new JTextField();
+		textField.setSize(200, 200);
+		textField.setBounds(50, 25, 400, 50);
+		textField.setFont(myFont);
+		textField.setEditable(false);
+		textField.setBackground(myBlue);
+
+		//GUI Button erstellen
+		printCustomorButton = new JButton("Print all Customors in a list.");
+		searchCustumorButton = new JButton("Search for a Custumor.");
+		addCustumorButton = new JButton("Add a new new Customor.");
+		updateCustumorButton = new JButton("Update an existing Custumor");
+		deleteCustumorButton = new JButton("Delete a Customor from the system");
+		resetCustumorFieldButton = new JButton("Reset a field vom a customor");
+
+		buttonArray[0] = printCustomorButton;
+		buttonArray[1] = searchCustumorButton;
+		buttonArray[2] = addCustumorButton;
+		buttonArray[3] = updateCustumorButton;
+		buttonArray[4] = deleteCustumorButton;
+		buttonArray[5] = resetCustumorFieldButton;
+	
+		for(int i = 0; i < 6; i++) {
+			buttonArray[i].addActionListener((this));
+			buttonArray[i].setFont(myFont);
+			buttonArray[i].setBackground(myBlue);
+			buttonArray[i].setFocusable(false);
+		}
+		
+		//GUI panel ergänzen
+		panel = new JPanel();
+		panel.setBounds(50, 100, 400, 300);
+		panel.setLayout(new GridLayout(6, 1, 10, 10));
+		panel.setBackground(myBlue);
+
+		panel.add(buttonArray[0]);
+		panel.add(buttonArray[1]);
+		panel.add(buttonArray[2]);
+		panel.add(buttonArray[3]);
+		panel.add(buttonArray[4]);
+		panel.add(buttonArray[5]);
+
+		//GUI frame
+		frame.add(panel);
+		frame.add(textField);
 		frame.setVisible(true);
 
 	}
 
-	//Startmaske der Anwendung
+	public static void main(String[] args) {
+		EventQueue.invokeLater(() -> {
+                    Main CRM = new Main();
+                    CRM.setVisible(true);
+                });
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		for(int i=0;i<10;i++) {
+			if(e.getSource() == buttonArray[i]) {
+				textField.setText(textField.getText().concat(String.valueOf(i)));
+			}
+		}
+
+	}
+
+	/* Terminalcode verwendbar für GUI-Anwendung? (Backend-code?)
+	//Startmaske der Terminal-Anwendung
 	public static void programmStart() {
 				
 		//Variablen deklarieren
@@ -47,7 +131,7 @@ public class Main extends JFrame {
 		}
 		
 	}
-		
+	
 	//Auswahlmöglichkeiten der Kundenprofil-Methoden
 	public static int manageCustumorProfiles (int answer) {	
 
@@ -77,8 +161,10 @@ public class Main extends JFrame {
 		return answer;
 		
 	}
+	*/
 
 }
+
 		
 /* todo's'
 
@@ -86,8 +172,10 @@ public class Main extends JFrame {
 
 - Manage customer profiles (add, update, delete)
 	> done, also added the printCustumor(), searchCustumor() and deleteCustumorField() methods
+- Basic console-based interface
+	> 
 - Create and manage insurance policies
 - Simulate the filing and processing of claims
-- Basic console-based interface
+
 
 */
