@@ -4,6 +4,7 @@
 
 //not important yet
 module Versicherung {
+    requires java.desktop;
     /* 
     With module-info.java, your project is a "modular" Java app — better for large or professional systems.
 

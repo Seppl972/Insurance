@@ -1,0 +1,11 @@
+# Future Improvements Ideas
+
+- Implement a GUI using JavaFX or Swing
+
+- Add file storage or database integration
+    > stored the data in the array users first
+    > in the future the data should be safed in a sql-database (JDBC)
+
+- Introduce authentication and role-based access
+
+- Write unit tests with JUnit

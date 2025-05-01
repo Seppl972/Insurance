@@ -1,8 +1,9 @@
 package services;
 
 import java.util.Scanner;
-import main.Main; //import static main.Main.programmStart;
+import Main.programmStart;; //import static main.Main.programmStart;
 import models.Customor;
+utils
 
 public class CustomorService extends Customor{
 
@@ -239,6 +240,5 @@ public class CustomorService extends Customor{
 					Main.programmStart();
 			}
 		} 
-
 
 	}

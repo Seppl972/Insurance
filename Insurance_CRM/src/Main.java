@@ -1,18 +1,37 @@
-package main;
-
+import java.awt.EventQueue;
 import java.util.Scanner;
-import services.CustomorService;
+
+import javax.swing.JFrame.*;
+import javax.swing.*;
+
+//GUI bauen, schwieriger als gedacht
  
-public class Main {
+public class Main extends JFrame {
+
+	public Main() {
+		setTitle("Unsere GUI");
+		setSize(1920, 1080);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		//Container
+	}
 
 	public static void main(String[] args) {
-
-			programmStart();
-				
+		EventQueue.invokeLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				Main m = new Main();
+				m.setVisible(true);
+				//programmStart();
+			}
+		});
 	}
 
 	//Startmaske der Anwendung
 	public static void programmStart() {
+		
 		
 		//Variablen deklarieren
 		boolean software = true;
@@ -68,6 +87,22 @@ public class Main {
 		return answer;
 		
 	}
+
+    private static void setSize(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private static void setLocationRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private static void setDefaultCloseOperation(int EXIT_ON_CLOSE) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }
 		

@@ -1,3 +1,17 @@
 {
+    "java.configuration.runtimes": [
+      {
+        "name": "JavaSE-17",
+        "path": "/home/seppl972/Schreibtisch/Coding/Java/jdk-21.0.6+7",
+        "default": true
+      }
+    ],
+    "java.debug.settings.console": "internalConsole",
+    "java.project.referencedLibraries": [
+      "lib/**/*.jar"
+    ],
+    "java.project.sourcePaths": [
+        ""
+    ],
     "java.debug.settings.onBuildFailureProceed": true
-}
+  }
