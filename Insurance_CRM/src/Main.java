@@ -6,7 +6,9 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 import javax.swing.*;
+import src.services.CustomorService;
 
 public class Main extends JFrame implements ActionListener {
 
@@ -14,8 +16,10 @@ public class Main extends JFrame implements ActionListener {
 	JFrame frame;
 	JTextField textField;
 	JButton[] buttonArray = new JButton[6];
+	JButton[] functionButtons = new JButton[1];
 	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton, resetCustumorFieldButton;
-	
+	JButton delButton;
+
 	JPanel panel;
 
 	Font myFont = new Font("Ink Free", Font.BOLD,20);
@@ -49,6 +53,7 @@ public class Main extends JFrame implements ActionListener {
 		updateCustumorButton = new JButton("Update an existing Custumor");
 		deleteCustumorButton = new JButton("Delete a Customor from the system");
 		resetCustumorFieldButton = new JButton("Reset a field vom a customor");
+		delButton = new JButton("back");
 
 		buttonArray[0] = printCustomorButton;
 		buttonArray[1] = searchCustumorButton;
@@ -56,18 +61,29 @@ public class Main extends JFrame implements ActionListener {
 		buttonArray[3] = updateCustumorButton;
 		buttonArray[4] = deleteCustumorButton;
 		buttonArray[5] = resetCustumorFieldButton;
+
+		functionButtons[0] = delButton;
 	
+		for(int i = 0; i < 1; i++) {
+			functionButtons[i].addActionListener(this);
+			functionButtons[i].setFont(myFont);
+			functionButtons[i].setBackground(myBlue);
+			functionButtons[i].setFocusable(false);
+		}
+
 		for(int i = 0; i < 6; i++) {
 			buttonArray[i].addActionListener((this));
 			buttonArray[i].setFont(myFont);
 			buttonArray[i].setBackground(myBlue);
 			buttonArray[i].setFocusable(false);
 		}
+
+		//delButton.setBounds(250, 430, 100, 50);
 		
 		//GUI panel ergänzen
 		panel = new JPanel();
 		panel.setBounds(50, 100, 400, 300);
-		panel.setLayout(new GridLayout(6, 1, 10, 10));
+		panel.setLayout(new GridLayout(7, 1, 10, 10));
 		panel.setBackground(myBlue);
 
 		panel.add(buttonArray[0]);
@@ -76,6 +92,7 @@ public class Main extends JFrame implements ActionListener {
 		panel.add(buttonArray[3]);
 		panel.add(buttonArray[4]);
 		panel.add(buttonArray[5]);
+		panel.add(functionButtons[0]);
 
 		//GUI frame
 		frame.add(panel);
@@ -101,9 +118,17 @@ public class Main extends JFrame implements ActionListener {
 			}
 		}
 
+		if(e.getSource()==delButton) {
+			String string = textField.getText();
+			textField.setText("");
+			for(int i = 0; i<string.length()-1;i++) {
+				textField.setText(textField.getText()+string.charAt(i));
+			} 
+		}
+
 	}
 
-	/* Terminalcode verwendbar für GUI-Anwendung? (Backend-code?)
+	//Terminalcode verwendbar für GUI-Anwendung? (=Backend-code?)
 	//Startmaske der Terminal-Anwendung
 	public static void programmStart() {
 				
@@ -125,7 +150,7 @@ public class Main extends JFrame implements ActionListener {
 		//Benutzereingabe über Scanner		
 		Scanner scan1 = new Scanner(System.in);
 		answer = scan1.nextInt();
-
+		
 		//Auswahlmöglichkeiten Kundenprofil
 		manageCustumorProfiles(answer);
 		}
@@ -161,7 +186,6 @@ public class Main extends JFrame implements ActionListener {
 		return answer;
 		
 	}
-	*/
 
 }
 

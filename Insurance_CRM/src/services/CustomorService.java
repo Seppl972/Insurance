@@ -1,7 +1,8 @@
 package src.services;
 
 import java.util.Scanner;
-import src.Main;
+
+import src.Main.*;
 import src.models.Customor;
 
 public class CustomorService extends Customor{
