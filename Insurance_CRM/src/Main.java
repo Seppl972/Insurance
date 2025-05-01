@@ -6,9 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 import javax.swing.*;
-import src.services.CustomorService;
 
 public class Main extends JFrame implements ActionListener {
 
@@ -47,13 +45,13 @@ public class Main extends JFrame implements ActionListener {
 		textField.setBackground(myBlue);
 
 		//GUI Button erstellen
-		printCustomorButton = new JButton("Print all Customors in a list.");
-		searchCustumorButton = new JButton("Search for a Custumor.");
-		addCustumorButton = new JButton("Add a new new Customor.");
+		printCustomorButton = new JButton("Print all Customors in a list");
+		searchCustumorButton = new JButton("Search for a Custumor");
+		addCustumorButton = new JButton("Add a new Customor");
 		updateCustumorButton = new JButton("Update an existing Custumor");
 		deleteCustumorButton = new JButton("Delete a Customor from the system");
 		resetCustumorFieldButton = new JButton("Reset a field vom a customor");
-		delButton = new JButton("back");
+		delButton = new JButton("delete");
 
 		buttonArray[0] = printCustomorButton;
 		buttonArray[1] = searchCustumorButton;
@@ -92,6 +90,7 @@ public class Main extends JFrame implements ActionListener {
 		panel.add(buttonArray[3]);
 		panel.add(buttonArray[4]);
 		panel.add(buttonArray[5]);
+
 		panel.add(functionButtons[0]);
 
 		//GUI frame
@@ -112,24 +111,133 @@ public class Main extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		for(int i=0;i<10;i++) {
-			if(e.getSource() == buttonArray[i]) {
-				textField.setText(textField.getText().concat(String.valueOf(i)));
-			}
+		//Kundenliste ausgeben
+		if(e.getSource() == printCustomorButton) {
+			textField.setText("List of all Custumor");
+
+			panel.removeAll();	
+			panel.revalidate();
+			panel.repaint();
 		}
 
-		if(e.getSource()==delButton) {
-			String string = textField.getText();
-			textField.setText("");
-			for(int i = 0; i<string.length()-1;i++) {
-				textField.setText(textField.getText()+string.charAt(i));
-			} 
+		//Einzelnen Kunden suchen
+		if(e.getSource() == searchCustumorButton) {
+			textField.setText("Which Customor u want to print?");
+
+			panel.removeAll();	
+			panel.revalidate();
+			panel.repaint();
+
 		}
+
+		//Neuen Benutzer hinzufügen - gerade dabei
+		if(e.getSource() == addCustumorButton) {
+			JLabel answerLabel;
+			
+			textField.setText("Creating new Customor");
+
+			//Alte GUI-panel entfernen			
+			panel.removeAll();
+			panel.revalidate();
+			panel.repaint();
+			
+			//Gleiches Fenster, desshalb kein "JFrame frame = new JFrame();""
+			
+			//Buttons, JLabels, JTextFields
+			JButton button = new JButton("enter");
+			button.addActionListener(this);
+
+			JLabel label = new JLabel("How to create a new Customor:");
+			label.setFont(myFont);
+
+			JLabel enterName = new JLabel("Enter name:");
+			enterName.setFont(myFont);
+	
+			JLabel enterAge = new JLabel("Enter age:");
+			enterAge.setFont(myFont);
+	
+			JLabel enterPlace = new JLabel("Enter place");
+			enterPlace.setFont(myFont);
+
+			JTextField name = new JTextField();
+        	name.setFont(myFont);
+
+        	JTextField Age = new JTextField();
+        	Age.setFont(myFont);
+
+			JTextField Place = new JTextField();
+			Place.setFont(myFont);
+
+			//Gleiches GUI-panel wie bei der Startmaske, deshalb kein "panel = new JPanel();""
+			panel.setLayout(new GridLayout(0, 1));
+			panel.add(label);
+			panel.add(enterName);
+			panel.add(name);
+			panel.add(enterAge);
+			panel.add(Age);
+			panel.add(enterPlace);
+			panel.add(Place);
+			answerLabel = new JLabel("			");
+			panel.add(answerLabel);
+			panel.add(button);
+
+			frame.add(panel);
+			frame.setSize(450, 450);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setTitle("Titel des Frames");
+			frame.setVisible(true);
+			frame.setResizable(false);
+
+
+		}
+
+		//Benutzer updaten - leer
+		if(e.getSource() == updateCustumorButton) {
+			textField.setText("Update an existing Customor");
+
+			panel.removeAll();	
+			panel.revalidate();
+			panel.repaint();
+
+		}
+
+		//Benutzer löschen - leer
+		if(e.getSource() == deleteCustumorButton) {
+			textField.setText("Delete an existing Customor");
+
+			panel.removeAll();	
+			panel.revalidate();
+			panel.repaint();
+
+		}
+
+		//Benutzerfeld zurücksetzen - leer
+		if(e.getSource() == resetCustumorFieldButton) {
+			textField.setText("Reset a Customor field");
+
+			panel.removeAll();	
+			panel.revalidate();
+			panel.repaint();
+
+		}
+
+		//Eingabefeld zurücksetzen - funktioniert nicht mehr
+		if(e.getSource()==delButton) {
+			textField.setText("");
+		}
+
+		/*ArrayWert des Buttons ausgeben - wird nicht benötigt aktell
+		for(int i=0;i<1;i++) {
+			if(e.getSource()==functionButtons[i]) {
+				if(e.getSource() == buttonArray[i]) 
+					textField.setText(textField.getText().concat(String.valueOf(i)));
+			}
+		}*/
 
 	}
 
-	//Terminalcode verwendbar für GUI-Anwendung? (=Backend-code?)
-	//Startmaske der Terminal-Anwendung
+	/*Terminalcode verwendbar für GUI-Anwendung? (=Backend-code?)
+	//Startmethode der Terminal-Anwendung
 	public static void programmStart() {
 				
 		//Variablen deklarieren
@@ -185,7 +293,7 @@ public class Main extends JFrame implements ActionListener {
 		}
 		return answer;
 		
-	}
+	}*/
 
 }
 
@@ -197,9 +305,8 @@ public class Main extends JFrame implements ActionListener {
 - Manage customer profiles (add, update, delete)
 	> done, also added the printCustumor(), searchCustumor() and deleteCustumorField() methods
 - Basic console-based interface
-	> 
+	> in progress
 - Create and manage insurance policies
 - Simulate the filing and processing of claims
-
 
 */
