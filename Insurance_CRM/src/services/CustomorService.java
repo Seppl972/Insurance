@@ -20,8 +20,25 @@ public class CustomorService extends Customor{
 		System.out.println("Place: "+users[arrayStelle].place);
 	}
 
+	//Methode - print All Custumors
+	public static void printCustumors() {
+
+		System.out.println("The following Users are registered in the system:");
+		
+		if (arraycounter == 0) {
+			System.out.println("There are no Custumors in the database.");
+		}
+		for (int i = 0; i < arraycounter; i++) {
+			System.out.println("UserID: " + users[i].id + " - " + users[i].name);
+		} 
+		Main.programmStart();
+
+	}
+	
+	//Methode greift nicht auf die geupdateten Wert zu
 	//Methode zum suchen einer ID im Objekt-Array (mithilfe des inkrementierten arrayounters)
 	public static void searchCustumor() {
+
 		//Nachfrage nach bestehender Id
 		System.out.println("\nPlease give me a CustumorID:\n");
 		//Speicherung der Eingabe Id mithilfe eines Scanners (Optional BufferedReader einbauen)
@@ -34,9 +51,10 @@ public class CustomorService extends Customor{
 		} else {
 			System.out.println("UserID wasn't found in the array!");	
 		} 
+
 	}
 	
-	//Methode zum hinzufügen eines neuen Kunden - fertig
+	//Methode zum hinzufügen eines neuen Kunden - zurüücks einfügen
 	public static void addCustumor() {
 	
 		//Userbestand anzeigen (mithilfe des arrayounters)
@@ -93,21 +111,21 @@ public class CustomorService extends Customor{
 			System.out.println("\nUser "+inputId+" was found in the System!");	
 			arrayAusgeben(inputId-1);
 			System.out.println("\nWhat do you want to change? \nPlease press one of the following keys!");
-			System.out.println("0. ID");
-			System.out.println("1. Name");
-			System.out.println("2. Age");
-			System.out.println("3. Place");
-			System.out.println("4. Back");
+			System.out.println("1. ID");
+			System.out.println("2. Name");
+			System.out.println("3. Age");
+			System.out.println("4. Place");
+			System.out.println("5. Back");
 
 		} else {
 			System.out.println("The UsedID doesn't exist!");	
 		} 
 
-		Scanner updateUser = new Scanner(System.in);
-		int updateUserField = updateUser.nextInt();
+		Scanner updateCustumorScanner = new Scanner(System.in);
+		int updateCustumorField = updateCustumorScanner.nextInt();
 
-		switch(updateUserField) {
-			case 0: //UserId updaten
+		switch(updateCustumorField) {
+			case 1: //UserId updaten
 				//Funktioniert nicht richtig wegen arrayAusgeben-Methode
 				System.out.println("\nWhat should be the new ID?");
 				Scanner updateUserId = new Scanner(System.in);
@@ -117,7 +135,7 @@ public class CustomorService extends Customor{
 				System.out.println("NewID: "+updateUserFieldId);
 				System.out.println("UserID was changed succesfully!");
 				break;
-			case 1: //Name updaten
+			case 2: //Name updaten
 				//Ändert den Namen im Dialog und im Datenbestand?
 				System.out.println("\nWhat should be the new name?");
 				Scanner updateUserName = new Scanner(System.in);
@@ -127,7 +145,7 @@ public class CustomorService extends Customor{
 				System.out.println("NewName: "+updateUserFieldName);
 				System.out.println("Name was changed succesfully!");
 				break;
-			case 2: //Age updaten
+			case 3: //Age updaten
 				//Ändert Alter im Dialog und im Datenbestand
 				System.out.println("\nWhat should be the new age?");
 				Scanner updateUserAge = new Scanner(System.in);
@@ -137,7 +155,7 @@ public class CustomorService extends Customor{
 				System.out.println("NewAge: "+updateUserFieldAge);
 				System.out.println("Age was changed succesfully!");
 				break;
-			case 3: //Place updaten
+			case 4: //Place updaten
 				System.out.println("\nWhat should be the new place?");
 				Scanner updateUserPlace = new Scanner(System.in);
 				String updateUserFieldPlace = updateUserPlace.nextLine();
@@ -146,22 +164,81 @@ public class CustomorService extends Customor{
 				System.out.println("NewAge: "+updateUserFieldPlace);
 				System.out.println("Place was changed succesfully!");
 				break;
-			case 4: //Zurück
+			case 5: //Zurück zum Startmenü
 				Main.programmStart();
-
 		}
 
 	}
 	
 	//Methode zur Benutzerlöschung - Objekt aus array entfernen?
 	public static void deleteCustumor() {
-		System.out.println("\nWhich Custumor do you want to delete?");
-			
-		Scanner deleteId = new Scanner(System.in);
-		int deletedId = deleteId.nextInt();
+		System.out.println("\nWhich Customor do you want to delete?");
+		
+		//Benutzereingabe
+		Scanner deleteUser = new Scanner(System.in);
+		int deletedUserArray = deleteUser.nextInt();
 			
 		//Verweis auf array basteln
-		System.out.println(deletedId + " has been succesfully deleted from the system!\n");
+		users[deletedUserArray-1].id = 0;
+		users[deletedUserArray-1].name = " ";
+		users[deletedUserArray-1].age = 0;
+		users[deletedUserArray-1].place = " ";
+		System.out.println("\nUser: "+deletedUserArray + " has been deleted from the system succesfully!");
+		Main.programmStart();
 	}
 
-}
+	//Methode zum zurücksetzen einzelner Kundenfelder
+	public static void resetCustumorField() { 
+		
+		//Kundensuche
+		System.out.println("From which customor u want to delete a field?");
+		Scanner searchCustumorScanner = new Scanner(System.in);
+		int searchCustumorField = searchCustumorScanner.nextInt();
+		arrayAusgeben(searchCustumorField-1);
+
+		if (searchCustumorField == 0) {
+			System.out.println("UserID wasn't found in the array!");	
+		} else {
+					
+			System.out.println("\nCustumor: "+searchCustumorField+" was found!");	
+			System.out.println("Which field do u wanted to reset?");	
+			System.out.println("1. ID");
+			System.out.println("2. Name");
+			System.out.println("3. Age");
+			System.out.println("4. Place");
+			System.out.println("5. Back\n");
+		}
+
+			//Speicherung der Eingabe
+			Scanner resetCustumorScanner = new Scanner(System.in);
+			int resetCustumorField = resetCustumorScanner.nextInt();
+
+			switch(resetCustumorField) {
+				case 1: //UserId zurücksetzen
+					System.out.println("\nOldID: "+users[searchCustumorField-1].id);
+					users[searchCustumorField-1].id = 0;
+					System.out.println("UserID was reseted succesfully!");
+				break;
+				case 2: //Name zurücksetzen
+					System.out.println("\nOldName: "+users[searchCustumorField-1].name);
+					users[searchCustumorField-1].name = " ";
+					System.out.println("Name was reseted succesfully!");
+				break;
+				case 3: //Age zurücksetzen
+					//Ändert Alter im Dialog und im Datenbestand
+					System.out.println("\nOldAge: "+users[searchCustumorField-1].age);
+					users[searchCustumorField-1].age = 0;
+					System.out.println("Age was reseted succesfully!");
+				break;
+				case 4: //Place zurücksetzen 
+					System.out.println("\nOldPlace: "+users[searchCustumorField-1].place);
+					users[searchCustumorField-1].place = "  ";
+					System.out.println("Place was reseted succesfully!");
+				break;
+				case 5: //Zurück zum Startmenü
+					Main.programmStart();
+			}
+		} 
+
+
+	}

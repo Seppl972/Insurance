@@ -12,7 +12,8 @@ Welcome to my first coding project for solving real world problems! This Java-ba
 ## 🛠️ Features
 
 - Manage customer profiles (add, update, delete)
-	=> the three methods have been implemented succesfully
+	> the three methods have been implemented succesfully
+   > also added another 3 methods for printing or deleting Customor and reset CustumorField
 - Create and manage insurance policies
 - Simulate the filing and processing of claims
 - Basic console-based interface
@@ -27,7 +28,8 @@ Welcome to my first coding project for solving real world problems! This Java-ba
 
 - Object-oriented programming (OOP): Classes, inheritance, encapsulation, polymorphism  
 - Collections (e.g., ArrayList, HashMap) for data handling  
-   => trying to safe the addCustumor inputs into an array[]
+   > trying to safe the addCustumor inputs into an array[]
+   > classic array done
 - Exception handling and validation  
 - Basic software architecture and modularization  
 - Input/output operations  
