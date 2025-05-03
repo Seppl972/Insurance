@@ -100,7 +100,11 @@ public class Main extends JFrame implements ActionListener {
 			//Altes panel entfernen
 			panel.removeAll();	
 			panel.revalidate();
-			panel.repaint();			
+			panel.repaint();		
+			
+			JTable Data = new JTable();
+			Data.setFont(myFont);
+			panel.add(Data);
 
 			//Enter & Back-Button
 			JButton enterButton = new JButton("enter");
