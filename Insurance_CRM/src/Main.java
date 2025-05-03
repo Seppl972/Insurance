@@ -14,9 +14,7 @@ public class Main extends JFrame implements ActionListener {
 	JFrame frame;
 	JTextField textField;
 	JButton[] buttonArray = new JButton[6];
-	JButton[] functionButtons = new JButton[1];
-	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton, resetCustumorFieldButton;
-	JButton delButton;
+	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton;
 
 	JPanel panel;
 
@@ -50,33 +48,20 @@ public class Main extends JFrame implements ActionListener {
 		addCustumorButton = new JButton("Add a new Customor");
 		updateCustumorButton = new JButton("Update an existing Custumor");
 		deleteCustumorButton = new JButton("Delete a Customor from the system");
-		resetCustumorFieldButton = new JButton("Reset a field vom a customor");
-		delButton = new JButton("delete");
 
+		//Array für Buttons
 		buttonArray[0] = printCustomorButton;
 		buttonArray[1] = searchCustumorButton;
 		buttonArray[2] = addCustumorButton;
 		buttonArray[3] = updateCustumorButton;
 		buttonArray[4] = deleteCustumorButton;
-		buttonArray[5] = resetCustumorFieldButton;
 
-		functionButtons[0] = delButton;
-	
-		for(int i = 0; i < 1; i++) {
-			functionButtons[i].addActionListener(this);
-			functionButtons[i].setFont(myFont);
-			functionButtons[i].setBackground(myBlue);
-			functionButtons[i].setFocusable(false);
-		}
-
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < 5; i++) {
 			buttonArray[i].addActionListener((this));
 			buttonArray[i].setFont(myFont);
 			buttonArray[i].setBackground(myBlue);
 			buttonArray[i].setFocusable(false);
 		}
-
-		//delButton.setBounds(250, 430, 100, 50);
 		
 		//GUI panel ergänzen
 		panel = new JPanel();
@@ -89,9 +74,6 @@ public class Main extends JFrame implements ActionListener {
 		panel.add(buttonArray[2]);
 		panel.add(buttonArray[3]);
 		panel.add(buttonArray[4]);
-		panel.add(buttonArray[5]);
-
-		panel.add(functionButtons[0]);
 
 		//GUI frame
 		frame.add(panel);
@@ -111,22 +93,76 @@ public class Main extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		//Kundenliste ausgeben
+		//Kundenliste ausgeben - wo Daten? Array mit Objekten wieder verwendbar?
 		if(e.getSource() == printCustomorButton) {
+			
 			textField.setText("List of all Custumor");
-
+			//Altes panel entfernen
 			panel.removeAll();	
 			panel.revalidate();
 			panel.repaint();
+
+			JPasswordField pw = new JPasswordField();
+			pw.setFont(myFont);
+			panel.add(pw);
+
+			//Enter & Back-Button
+			JButton enterButton = new JButton("enter");
+			enterButton.setFont(myFont);
+			panel.add(enterButton);
+			JButton backButton = new JButton("back");
+			backButton.setFont(myFont);
+			panel.add(backButton);
+			
+			//ActionsListener
+			enterButton.addActionListener(l -> {
+				//textField.setText("ID: "+searchIDJTextField.getText() +" was not found");
+			});
+			backButton.addActionListener(l -> {
+				Main restart = new Main();
+			});
 		}
 
 		//Einzelnen Kunden suchen
 		if(e.getSource() == searchCustumorButton) {
-			textField.setText("Which Customor u want to print?");
+			textField.setText("Search Customor");
 
 			panel.removeAll();	
 			panel.revalidate();
 			panel.repaint();
+			panel.setLayout(new GridLayout(0, 2));
+			
+			//ID-Suche
+			JLabel searchID = new JLabel("ID: ");
+			searchID.setFont(myFont);
+			panel.add(searchID);
+			JTextField searchIDJTextField = new JTextField();
+			searchIDJTextField.setFont(myFont);
+			panel.add(searchIDJTextField);
+
+			//Name-Suche
+			JLabel searchName = new JLabel("Name: ");
+			searchName.setFont(myFont);
+			panel.add(searchName);
+			JTextField searchName2JTextField = new JTextField();
+			searchName2JTextField.setFont(myFont);
+			panel.add(searchName2JTextField);
+			
+			//Enter & Back-Button
+			JButton backButton = new JButton("back");
+			backButton.setFont(myFont);
+			panel.add(backButton);
+			JButton enterButton = new JButton("enter");
+			enterButton.setFont(myFont);
+			panel.add(enterButton);
+			
+			//ActionsListener
+			enterButton.addActionListener(l -> {
+				textField.setText("ID: "+searchIDJTextField.getText() +" was not found");
+			});
+			backButton.addActionListener(l -> {
+				Main restart = new Main();
+			});
 
 		}
 
@@ -134,7 +170,7 @@ public class Main extends JFrame implements ActionListener {
 		if(e.getSource() == addCustumorButton) {
 			JLabel answerLabel;
 			
-			textField.setText("Creating new Customor");
+			//textField.setText("Creating new Customor");
 
 			//Alte GUI-panel entfernen			
 			panel.removeAll();
@@ -142,35 +178,41 @@ public class Main extends JFrame implements ActionListener {
 			panel.repaint();
 			
 			//Gleiches Fenster, desshalb kein "JFrame frame = new JFrame();""
+			textField.setText("Create new Customor");
 			
 			//Buttons, JLabels, JTextFields
-			JButton button = new JButton("enter");
-			button.addActionListener(this);
-
-			JLabel label = new JLabel("How to create a new Customor:");
-			label.setFont(myFont);
-
 			JLabel enterName = new JLabel("Enter name:");
 			enterName.setFont(myFont);
-	
 			JLabel enterAge = new JLabel("Enter age:");
 			enterAge.setFont(myFont);
-	
 			JLabel enterPlace = new JLabel("Enter place");
 			enterPlace.setFont(myFont);
 
 			JTextField name = new JTextField();
         	name.setFont(myFont);
-
         	JTextField Age = new JTextField();
         	Age.setFont(myFont);
-
 			JTextField Place = new JTextField();
 			Place.setFont(myFont);
 
+			//Enter & Back
+			JButton enterButton = new JButton("enter");
+			enterButton.setFont(myFont);
+			JButton backButton = new JButton("back");
+			backButton.setFont(myFont);
+			panel.add(backButton);
+
+			enterButton.addActionListener(l -> {
+				int cusCounter = 0;
+				cusCounter++;
+				textField.setText(name.getText() +" was created succesfully");
+			});
+			backButton.addActionListener(l -> {
+				Main restart = new Main();
+			});
+
 			//Gleiches GUI-panel wie bei der Startmaske, deshalb kein "panel = new JPanel();""
 			panel.setLayout(new GridLayout(0, 1));
-			panel.add(label);
 			panel.add(enterName);
 			panel.add(name);
 			panel.add(enterAge);
@@ -179,16 +221,8 @@ public class Main extends JFrame implements ActionListener {
 			panel.add(Place);
 			answerLabel = new JLabel("			");
 			panel.add(answerLabel);
-			panel.add(button);
-
-			frame.add(panel);
-			frame.setSize(450, 450);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setTitle("Titel des Frames");
-			frame.setVisible(true);
-			frame.setResizable(false);
-
-
+			panel.add(enterButton);
+			panel.add(backButton);
 		}
 
 		//Benutzer updaten - leer
@@ -198,6 +232,60 @@ public class Main extends JFrame implements ActionListener {
 			panel.removeAll();	
 			panel.revalidate();
 			panel.repaint();
+
+			//panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+			panel.setLayout((new GridLayout(0, 1)));
+			JLabel enterID = new JLabel("Choose ID:");
+			enterID.setFont(myFont);
+			panel.add(enterID);
+			JSpinner ID = new JSpinner(new SpinnerNumberModel(10, 0, 10, 1));
+			ID.setFont(myFont);
+			panel.add(ID);
+			JLabel enterName = new JLabel("Update name:");
+			enterName.setFont(myFont);
+			JLabel enterAge = new JLabel("Update age:");
+			enterAge.setFont(myFont);
+			JLabel enterPlace = new JLabel("Update place");
+			enterPlace.setFont(myFont);
+
+			JTextField name = new JTextField();
+        	name.setFont(myFont);
+        	JTextField Age = new JTextField();
+        	Age.setFont(myFont);
+			JTextField Place = new JTextField();
+			Place.setFont(myFont);
+
+			//Enter & Back
+			JButton enterButton = new JButton("enter");
+			enterButton.setFont(myFont);
+			JButton backButton = new JButton("back");
+			backButton.setFont(myFont);
+			panel.add(backButton);
+
+			enterButton.addActionListener(l -> {
+				int cusCounter = 0;
+				cusCounter++;
+				textField.setText(name.getText() +" was created succesfully");
+			});
+			backButton.addActionListener(l -> {
+				Main restart = new Main();
+			});
+
+			panel.add(enterName);
+			panel.add(name);
+			panel.add(enterAge);
+			panel.add(Age);
+			panel.add(enterPlace);
+			panel.add(Place);
+			JLabel Space = new JLabel("			");
+			panel.add(Space);
+			panel.add(enterButton);
+			panel.add(backButton);
+
+			enterButton.addActionListener(l -> {
+				textField.setText(name.getText() +" was updated succesfully");
+			});
+
 
 		}
 
@@ -209,21 +297,10 @@ public class Main extends JFrame implements ActionListener {
 			panel.revalidate();
 			panel.repaint();
 
-		}
+			JRadioButton ID = new JRadioButton("Delete Customor:");
+			ID.setFont(myFont);
+			panel.add(ID);
 
-		//Benutzerfeld zurücksetzen - leer
-		if(e.getSource() == resetCustumorFieldButton) {
-			textField.setText("Reset a Customor field");
-
-			panel.removeAll();	
-			panel.revalidate();
-			panel.repaint();
-
-		}
-
-		//Eingabefeld zurücksetzen - funktioniert nicht mehr
-		if(e.getSource()==delButton) {
-			textField.setText("");
 		}
 
 		/*ArrayWert des Buttons ausgeben - wird nicht benötigt aktell
