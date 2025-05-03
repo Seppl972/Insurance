@@ -100,11 +100,7 @@ public class Main extends JFrame implements ActionListener {
 			//Altes panel entfernen
 			panel.removeAll();	
 			panel.revalidate();
-			panel.repaint();
-
-			JPasswordField pw = new JPasswordField();
-			pw.setFont(myFont);
-			panel.add(pw);
+			panel.repaint();			
 
 			//Enter & Back-Button
 			JButton enterButton = new JButton("enter");
@@ -286,20 +282,48 @@ public class Main extends JFrame implements ActionListener {
 				textField.setText(name.getText() +" was updated succesfully");
 			});
 
-
 		}
 
 		//Benutzer löschen - leer
 		if(e.getSource() == deleteCustumorButton) {
-			textField.setText("Delete an existing Customor");
+			textField.setText("Please verify to delete Data!");
 
 			panel.removeAll();	
 			panel.revalidate();
 			panel.repaint();
+			panel.setLayout((new GridLayout(0, 2)));
 
-			JRadioButton ID = new JRadioButton("Delete Customor:");
-			ID.setFont(myFont);
-			panel.add(ID);
+			//Login-Name
+			JLabel askUsername = new JLabel("Username: ");
+			askUsername.setFont(myFont);
+			panel.add(askUsername);
+			JTextField getUsername = new JTextField();
+			getUsername.setFont(myFont);
+			panel.add(getUsername);
+
+			//Login-PW
+			JLabel password = new JLabel("Password: ");
+			password.setFont(myFont);
+			panel.add(password);
+			JPasswordField pw = new JPasswordField();
+			pw.setFont(myFont);
+			panel.add(pw);
+
+			//Enter & Back
+			JButton backButton = new JButton("back");
+			backButton.setFont(myFont);
+			panel.add(backButton);
+			JButton enterButton = new JButton("enter");
+			enterButton.setFont(myFont);
+			panel.add(enterButton);
+			
+			//Actionslistener
+			enterButton.addActionListener(l -> {
+				
+			});
+			backButton.addActionListener(l -> {
+				Main restart = new Main();
+			});
 
 		}
 
