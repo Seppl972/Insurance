@@ -130,31 +130,23 @@ public class Main extends JFrame implements ActionListener {
 			panel.removeAll();	
 			panel.revalidate();
 			panel.repaint();
-			panel.setLayout(new GridLayout(0, 2));
+			panel.setLayout(new GridLayout(0, 1));
 			
 			//ID-Suche
-			JLabel searchID = new JLabel("ID: ");
+			JLabel searchID = new JLabel("Please type in the Aktenzeichen: ");
 			searchID.setFont(myFont);
 			panel.add(searchID);
 			JTextField searchIDJTextField = new JTextField();
 			searchIDJTextField.setFont(myFont);
 			panel.add(searchIDJTextField);
-
-			//Name-Suche
-			JLabel searchName = new JLabel("Name: ");
-			searchName.setFont(myFont);
-			panel.add(searchName);
-			JTextField searchName2JTextField = new JTextField();
-			searchName2JTextField.setFont(myFont);
-			panel.add(searchName2JTextField);
 			
 			//Enter & Back-Button
-			JButton backButton = new JButton("back");
-			backButton.setFont(myFont);
-			panel.add(backButton);
 			JButton enterButton = new JButton("enter");
 			enterButton.setFont(myFont);
 			panel.add(enterButton);
+			JButton backButton = new JButton("back");
+			backButton.setFont(myFont);
+			panel.add(backButton);
 			
 			//ActionsListener
 			enterButton.addActionListener(l -> {
@@ -237,10 +229,8 @@ public class Main extends JFrame implements ActionListener {
 			panel.setLayout((new GridLayout(0, 1)));
 			JLabel enterID = new JLabel("Choose ID:");
 			enterID.setFont(myFont);
-			panel.add(enterID);
 			JSpinner ID = new JSpinner(new SpinnerNumberModel(10, 0, 10, 1));
 			ID.setFont(myFont);
-			panel.add(ID);
 			JLabel enterName = new JLabel("Update name:");
 			enterName.setFont(myFont);
 			JLabel enterAge = new JLabel("Update age:");
@@ -265,12 +255,14 @@ public class Main extends JFrame implements ActionListener {
 			enterButton.addActionListener(l -> {
 				int cusCounter = 0;
 				cusCounter++;
-				textField.setText(name.getText() +" was created succesfully");
+				textField.setText(name.getText() +" was updated succesfully");
 			});
 			backButton.addActionListener(l -> {
 				Main restart = new Main();
 			});
 
+			panel.add(enterID);
+			panel.add(ID);
 			panel.add(enterName);
 			panel.add(name);
 			panel.add(enterAge);
@@ -340,65 +332,6 @@ public class Main extends JFrame implements ActionListener {
 		}*/
 
 	}
-
-	/*Terminalcode verwendbar für GUI-Anwendung? (=Backend-code?)
-	//Startmethode der Terminal-Anwendung
-	public static void programmStart() {
-				
-		//Variablen deklarieren
-		boolean software = true;
-		int answer;
-		//int counter; eventuell einbauen zum zählen (Inkrementieren)
-		
-		//Eröffnungstext des Startmenüs (wird nach jeder Methode wieder neu angezeigt)
-		while (software == true) {
-		System.out.println("\nHello Sebastian, I hope you're doing fine. \nHow can I help you?\n");
-		System.out.println("1. Print all existing custumor");
-		System.out.println("2. Search for an existing custumor");
-		System.out.println("3. Add a new custumor");
-		System.out.println("4. Update an existing custumor");
-		System.out.println("5. Delete an existing custumor");
-		System.out.println("6. Delete a custumor field\n");
-
-		//Benutzereingabe über Scanner		
-		Scanner scan1 = new Scanner(System.in);
-		answer = scan1.nextInt();
-		
-		//Auswahlmöglichkeiten Kundenprofil
-		manageCustumorProfiles(answer);
-		}
-		
-	}
-	
-	//Auswahlmöglichkeiten der Kundenprofil-Methoden
-	public static int manageCustumorProfiles (int answer) {	
-
-		//CustumorService-Methoden werden per switch als Zahl aufgerufen
-		switch (answer) {
-		case 1: 
-			CustomorService.printCustumors();
-		case 2: 
-			CustomorService.searchCustumor();
-			break;
-		case 3: 
-			CustomorService.addCustumor();	
-			break;
-		case 4:
-			CustomorService.updateCustumor();
-			break;
-		case 5: 
-			CustomorService.deleteCustumor();
-			break;
-		case 6: 
-			CustomorService.resetCustumorField();
-			break;
-		default: 
-			System.out.println("The Exception-method doesnt exist yet!");
-			System.out.println("Please type in the right number!");
-		}
-		return answer;
-		
-	}*/
 
 }
 
