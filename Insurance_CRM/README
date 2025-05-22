@@ -4,18 +4,15 @@ Welcome to my first coding project for solving real world problems! This Java-ba
 
 ## 🚀 Project Goals
 
-- Apply Java.swing fundamentals in a real-life context  
-- Demonstrate object-oriented design principles  
-- Simulate typical CRM operations
-- Create a maintainable and extendable application
+- Demonstrate object-oriented design principles in a real-life context  
+- Apply Java.swing fundamentals 
+- Learning to implement a SQL database to a software
 
 ## 🛠️ Features
 
 - Manage customer profiles (add, update, delete)
-- Create and manage insurance policies
-- Simulate the filing and processing of claims
 - Basic java.swing GUI interface
-
+- Connected to SQL-Database
 
 ## 📚 Technologies Used
 
@@ -26,10 +23,12 @@ Welcome to my first coding project for solving real world problems! This Java-ba
 ## 💡 Learned Concepts in Practice
 
 - Object-oriented programming (OOP):
-- SQL for data handling  
+- Simple GUI with Java.swing
    > in progress
-- Simple GUI (Java.swing interface)
+   > Currently developing user interfaces using Java Swing components (e.g., JFrame, JButton, JTextField) to enhance interactivity.
+- SQL-Database for data  
    > in progress
+   > Working on connecting Java applications to an SQL database using JDBC to perform CRUD operations and manage persistent data.
 
 ## 📦 How to Run
 

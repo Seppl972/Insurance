@@ -11,74 +11,68 @@ import javax.swing.*;
 public class Main extends JFrame implements ActionListener {
 
 	//SWING GUI deklarieren
-	JFrame frame;
+	JFrame startFrame;
+	JPanel startPanel;
 	JTextField textField;
 	JButton[] buttonArray = new JButton[6];
 	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton;
-
-	JPanel panel;
-
 	Font myFont = new Font("Ink Free", Font.BOLD,20);
 	Color myBlue = new Color(30, 144, 255); // Dodger Blue
 
 	public Main() {
-		//GUI Rahmen erstellen
-		frame = new JFrame("Insurance CRM");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500, 500);
-		frame.setBackground(myBlue);
-		frame.getContentPane().setBackground(Color.BLUE);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(true);
-		frame.setVisible(true);
-		frame.setLayout(null);
-
+		//GUI Rahmen erstellen - 1920x1080
+		startFrame = new JFrame("Insurance CRM");
+		startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		startFrame.setSize(1920, 1080);
+		startFrame.setBackground(myBlue);
+		startFrame.getContentPane().setBackground(Color.BLUE);
+		startFrame.setLocationRelativeTo(null);
+		startFrame.setResizable(true);
+		startFrame.setVisible(true);
+		startFrame.setLayout(null);
 
 		//GUI Textfeld erstellen
 		textField = new JTextField();
 		textField.setSize(200, 200);
-		textField.setBounds(50, 25, 400, 50);
+		textField.setBounds(750, 225, 400, 50);		//Neu positioniert
 		textField.setFont(myFont);
 		textField.setEditable(false);
 		textField.setBackground(myBlue);
 
 		//GUI Button erstellen
 		printCustomorButton = new JButton("Print all Customors in a list");
-		searchCustumorButton = new JButton("Search for a Custumor");
+		searchCustumorButton = new JButton("Search for a Customor");
 		addCustumorButton = new JButton("Add a new Customor");
-		updateCustumorButton = new JButton("Update an existing Custumor");
-		deleteCustumorButton = new JButton("Delete a Customor from the system");
+		updateCustumorButton = new JButton("Update an existing Customor");
+		deleteCustumorButton = new JButton("Delete a Customor");
 
-		//Array für Buttons
+		//GUI Buttons in Array speichern
 		buttonArray[0] = printCustomorButton;
 		buttonArray[1] = searchCustumorButton;
 		buttonArray[2] = addCustumorButton;
 		buttonArray[3] = updateCustumorButton;
 		buttonArray[4] = deleteCustumorButton;
 
+		//GUI panel erstellen
+		startPanel = new JPanel();
+		startPanel.setBounds(750, 300, 400, 300);	//Neu positioniert
+		startPanel.setLayout(new GridLayout(7, 1, 10, 10));
+		startPanel.setBackground(myBlue);
+
+		//Buttons mit Grundfunktionen ausstatten
 		for(int i = 0; i < 5; i++) {
 			buttonArray[i].addActionListener((this));
 			buttonArray[i].setFont(myFont);
 			buttonArray[i].setBackground(myBlue);
 			buttonArray[i].setFocusable(false);
+			//Buttons dem panel hinzufügen
+			startPanel.add(buttonArray[i]);
 		}
-		
-		//GUI panel ergänzen
-		panel = new JPanel();
-		panel.setBounds(50, 100, 400, 300);
-		panel.setLayout(new GridLayout(7, 1, 10, 10));
-		panel.setBackground(myBlue);
 
-		panel.add(buttonArray[0]);
-		panel.add(buttonArray[1]);
-		panel.add(buttonArray[2]);
-		panel.add(buttonArray[3]);
-		panel.add(buttonArray[4]);
-
-		//GUI frame
-		frame.add(panel);
-		frame.add(textField);
-		frame.setVisible(true);
+		//GUI frame anzeigen (immer zum Schluss?)
+		startFrame.add(startPanel);
+		startFrame.add(textField);
+		startFrame.setVisible(true);
 
 	}
 
@@ -90,84 +84,107 @@ public class Main extends JFrame implements ActionListener {
 
 	}
 
+	public void showStartGUI() {
+		
+		//startPanel = new JPanel();
+		startPanel.removeAll();	
+		startPanel.revalidate();
+		startPanel.repaint();
+		textField.setText("What do you want to do?");
+
+		for(int i = 0; i < 50; i++) {
+			buttonArray[i].addActionListener((this));
+			buttonArray[i].setFont(myFont);
+			buttonArray[i].setBackground(myBlue);
+			buttonArray[i].setFocusable(false);
+			//Buttons dem panel hinzufügen
+			startPanel.add(buttonArray[i]);
+		}
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		//Kundenliste ausgeben - wo Daten? Array mit Objekten wieder verwendbar?
+		//Jtable ausgeben - Komplettansicht Datenbank (Soll scrollen durch Benutzerdaten ermöglichen)
+		//Mit SQL-Datenbank verbinden (per JDBC)
 		if(e.getSource() == printCustomorButton) {
 			
 			textField.setText("List of all Custumor");
 			//Altes panel entfernen
-			panel.removeAll();	
-			panel.revalidate();
-			panel.repaint();		
+			startPanel.removeAll();	
+			startPanel.revalidate();
+			startPanel.repaint();		
 			
 			JTable Data = new JTable();
 			Data.setFont(myFont);
-			panel.add(Data);
+			startPanel.add(Data);
 
 			//Enter & Back-Button
 			JButton enterButton = new JButton("enter");
 			enterButton.setFont(myFont);
-			panel.add(enterButton);
+			startPanel.add(enterButton);
 			JButton backButton = new JButton("back");
 			backButton.setFont(myFont);
-			panel.add(backButton);
+			startPanel.add(backButton);
 			
 			//ActionsListener
 			enterButton.addActionListener(l -> {
 				//textField.setText("ID: "+searchIDJTextField.getText() +" was not found");
 			});
 			backButton.addActionListener(l -> {
-				Main restart = new Main();
+				showStartGUI();
 			});
 		}
 
 		//Einzelnen Kunden suchen
+		//Soll durch Eingabe der UserID nur die UserDaten auspucken
 		if(e.getSource() == searchCustumorButton) {
 			textField.setText("Search Customor");
 
-			panel.removeAll();	
-			panel.revalidate();
-			panel.repaint();
-			panel.setLayout(new GridLayout(0, 1));
+			startPanel.removeAll();	
+			startPanel.revalidate();
+			startPanel.repaint();
+			startPanel.setLayout(new GridLayout(0, 1));
 			
 			//ID-Suche
 			JLabel searchID = new JLabel("Please type in the Aktenzeichen: ");
 			searchID.setFont(myFont);
-			panel.add(searchID);
+			startPanel.add(searchID);
 			JTextField searchIDJTextField = new JTextField();
 			searchIDJTextField.setFont(myFont);
-			panel.add(searchIDJTextField);
+			startPanel.add(searchIDJTextField);
 			
 			//Enter & Back-Button
 			JButton enterButton = new JButton("enter");
 			enterButton.setFont(myFont);
-			panel.add(enterButton);
+			startPanel.add(enterButton);
 			JButton backButton = new JButton("back");
 			backButton.setFont(myFont);
-			panel.add(backButton);
+			startPanel.add(backButton);
 			
 			//ActionsListener
 			enterButton.addActionListener(l -> {
 				textField.setText("ID: "+searchIDJTextField.getText() +" was not found");
 			});
 			backButton.addActionListener(l -> {
-				Main restart = new Main();
+				showStartGUI();
 			});
 
 		}
 
-		//Neuen Benutzer hinzufügen - gerade dabei
+		//Neuen Benutzer hinzufügen - gerade dabei (mit JTextField)
+		//Erstellte User sollen in JTable gespeichert werden nach dem Erstellen
+		//Später JTableTabelle mit SQL verbinden
 		if(e.getSource() == addCustumorButton) {
 			JLabel answerLabel;
 			
 			//textField.setText("Creating new Customor");
 
 			//Alte GUI-panel entfernen			
-			panel.removeAll();
-			panel.revalidate();
-			panel.repaint();
+			startPanel.removeAll();
+			startPanel.revalidate();
+			startPanel.repaint();
 			
 			//Gleiches Fenster, desshalb kein "JFrame frame = new JFrame();""
 			textField.setText("Create new Customor");
@@ -192,7 +209,7 @@ public class Main extends JFrame implements ActionListener {
 			enterButton.setFont(myFont);
 			JButton backButton = new JButton("back");
 			backButton.setFont(myFont);
-			panel.add(backButton);
+			startPanel.add(backButton);
 
 			enterButton.addActionListener(l -> {
 				int cusCounter = 0;
@@ -200,33 +217,33 @@ public class Main extends JFrame implements ActionListener {
 				textField.setText(name.getText() +" was created succesfully");
 			});
 			backButton.addActionListener(l -> {
-				Main restart = new Main();
+				showStartGUI();
 			});
 
 			//Gleiches GUI-panel wie bei der Startmaske, deshalb kein "panel = new JPanel();""
-			panel.setLayout(new GridLayout(0, 1));
-			panel.add(enterName);
-			panel.add(name);
-			panel.add(enterAge);
-			panel.add(Age);
-			panel.add(enterPlace);
-			panel.add(Place);
+			startPanel.setLayout(new GridLayout(0, 1));
+			startPanel.add(enterName);
+			startPanel.add(name);
+			startPanel.add(enterAge);
+			startPanel.add(Age);
+			startPanel.add(enterPlace);
+			startPanel.add(Place);
 			answerLabel = new JLabel("			");
-			panel.add(answerLabel);
-			panel.add(enterButton);
-			panel.add(backButton);
+			startPanel.add(answerLabel);
+			startPanel.add(enterButton);
+			startPanel.add(backButton);
 		}
 
 		//Benutzer updaten - leer
 		if(e.getSource() == updateCustumorButton) {
 			textField.setText("Update an existing Customor");
 
-			panel.removeAll();	
-			panel.revalidate();
-			panel.repaint();
+			startPanel.removeAll();	
+			startPanel.revalidate();
+			startPanel.repaint();
 
 			//panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-			panel.setLayout((new GridLayout(0, 1)));
+			startPanel.setLayout((new GridLayout(0, 1)));
 			JLabel enterID = new JLabel("Choose ID:");
 			enterID.setFont(myFont);
 			JSpinner ID = new JSpinner(new SpinnerNumberModel(10, 0, 10, 1));
@@ -250,7 +267,7 @@ public class Main extends JFrame implements ActionListener {
 			enterButton.setFont(myFont);
 			JButton backButton = new JButton("back");
 			backButton.setFont(myFont);
-			panel.add(backButton);
+			startPanel.add(backButton);
 
 			enterButton.addActionListener(l -> {
 				int cusCounter = 0;
@@ -258,21 +275,21 @@ public class Main extends JFrame implements ActionListener {
 				textField.setText(name.getText() +" was updated succesfully");
 			});
 			backButton.addActionListener(l -> {
-				Main restart = new Main();
+				showStartGUI();
 			});
 
-			panel.add(enterID);
-			panel.add(ID);
-			panel.add(enterName);
-			panel.add(name);
-			panel.add(enterAge);
-			panel.add(Age);
-			panel.add(enterPlace);
-			panel.add(Place);
+			startPanel.add(enterID);
+			startPanel.add(ID);
+			startPanel.add(enterName);
+			startPanel.add(name);
+			startPanel.add(enterAge);
+			startPanel.add(Age);
+			startPanel.add(enterPlace);
+			startPanel.add(Place);
 			JLabel Space = new JLabel("			");
-			panel.add(Space);
-			panel.add(enterButton);
-			panel.add(backButton);
+			startPanel.add(Space);
+			startPanel.add(enterButton);
+			startPanel.add(backButton);
 
 			enterButton.addActionListener(l -> {
 				textField.setText(name.getText() +" was updated succesfully");
@@ -280,45 +297,45 @@ public class Main extends JFrame implements ActionListener {
 
 		}
 
-		//Benutzer löschen - leer
+		//Benutzer löschen - (Zuerst eine Anmeldemaske)
+		//User aus JTable-Tabelle entfernen
 		if(e.getSource() == deleteCustumorButton) {
 			textField.setText("Please verify to delete Data!");
 
-			panel.removeAll();	
-			panel.revalidate();
-			panel.repaint();
-			panel.setLayout((new GridLayout(0, 2)));
+			startPanel.removeAll();	
+			startPanel.revalidate();
+			startPanel.repaint();
 
 			//Login-Name
 			JLabel askUsername = new JLabel("Username: ");
 			askUsername.setFont(myFont);
-			panel.add(askUsername);
+			startPanel.add(askUsername);
 			JTextField getUsername = new JTextField();
 			getUsername.setFont(myFont);
-			panel.add(getUsername);
+			startPanel.add(getUsername);
 
 			//Login-PW
 			JLabel password = new JLabel("Password: ");
 			password.setFont(myFont);
-			panel.add(password);
+			startPanel.add(password);
 			JPasswordField pw = new JPasswordField();
 			pw.setFont(myFont);
-			panel.add(pw);
+			startPanel.add(pw);
 
 			//Enter & Back
-			JButton backButton = new JButton("back");
-			backButton.setFont(myFont);
-			panel.add(backButton);
 			JButton enterButton = new JButton("enter");
 			enterButton.setFont(myFont);
-			panel.add(enterButton);
+			startPanel.add(enterButton);
+			JButton backButton = new JButton("back");
+			backButton.setFont(myFont);
+			startPanel.add(backButton);
 			
 			//Actionslistener
 			enterButton.addActionListener(l -> {
 				
 			});
 			backButton.addActionListener(l -> {
-				Main restart = new Main();
+				showStartGUI();
 			});
 
 		}
