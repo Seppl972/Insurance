@@ -4,15 +4,16 @@ Welcome to my first coding project for solving real world problems! This Java-ba
 
 ## 🚀 Project Goals
 
-- Demonstrate object-oriented design principles in a real-life context  
-- Apply Java.swing fundamentals 
-- Learning to implement a SQL database to a software
+- Demonstrate learned oop principles in a real-life context  
+- Apply Java fundamentals in a project for faster learning progress
+- Learning to create a simple Java GUI application 
+- Learning to connect a SQL database with JDBC
 
 ## 🛠️ Features
 
 - Manage customer profiles (add, update, delete)
 - Basic java.swing GUI interface
-- Connected to SQL-Database
+- Connection with JDBC to a SQL-Database
 
 ## 📚 Technologies Used
 
@@ -22,13 +23,14 @@ Welcome to my first coding project for solving real world problems! This Java-ba
 
 ## 💡 Learned Concepts in Practice
 
-- Object-oriented programming (OOP):
+- Object-oriented programming (OOP)
 - Simple GUI with Java.swing
    > in progress
    > Currently developing user interfaces using Java Swing components (e.g., JFrame, JButton, JTextField) to enhance interactivity.
-- SQL-Database for data  
-   > in progress
-   > Working on connecting Java applications to an SQL database using JDBC to perform CRUD operations and manage persistent data.
+- Implementing JTable for creating structured user data
+   > not yet
+- Connecting a SQL-Database with JDBC for data management
+   > not yet
 
 ## 📦 How to Run
 
