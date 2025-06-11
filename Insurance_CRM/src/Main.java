@@ -8,14 +8,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+
 public class Main extends JFrame implements ActionListener {
 
 	//SWING GUI deklarieren
-	JFrame startFrame;
-	JPanel startPanel;
+	JFrame startFrame, dataFrame;
+	JPanel startPanel, dataPanel;
 	JTextField textField;
 	JButton[] buttonArray = new JButton[6];
-	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton;
+	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton, JTableButton;
 	Font myFont = new Font("Ink Free", Font.BOLD,20);
 	Color myBlue = new Color(30, 144, 255); // Dodger Blue
 
@@ -45,6 +46,7 @@ public class Main extends JFrame implements ActionListener {
 		addCustumorButton = new JButton("Add a new Customor");
 		updateCustumorButton = new JButton("Update an existing Customor");
 		deleteCustumorButton = new JButton("Delete a Customor");
+		JTableButton = new JButton("Teste JTable");
 
 		//GUI Buttons in Array speichern
 		buttonArray[0] = printCustomorButton;
@@ -52,6 +54,8 @@ public class Main extends JFrame implements ActionListener {
 		buttonArray[2] = addCustumorButton;
 		buttonArray[3] = updateCustumorButton;
 		buttonArray[4] = deleteCustumorButton;
+		buttonArray[5] = JTableButton;
+
 
 		//GUI panel erstellen
 		startPanel = new JPanel();
@@ -60,7 +64,7 @@ public class Main extends JFrame implements ActionListener {
 		startPanel.setBackground(myBlue);
 
 		//Buttons mit Grundfunktionen ausstatten
-		for(int i = 0; i < 5; i++) {
+		for(int i = 0; i < 6; i++) {
 			buttonArray[i].addActionListener((this));
 			buttonArray[i].setFont(myFont);
 			buttonArray[i].setBackground(myBlue);
@@ -190,7 +194,7 @@ public class Main extends JFrame implements ActionListener {
 			textField.setText("Create new Customor");
 			
 			//Buttons, JLabels, JTextFields
-			JLabel enterName = new JLabel("Enter name:");
+			JLabel enterName = new JLabel("Enter full name:");
 			enterName.setFont(myFont);
 			JLabel enterAge = new JLabel("Enter age:");
 			enterAge.setFont(myFont);
@@ -340,6 +344,38 @@ public class Main extends JFrame implements ActionListener {
 
 		}
 
+		//Erster JTable-Versuch - 2d Array
+		if(e.getSource() == JTableButton) {
+
+				
+			// Spaltentitel
+			String[] title = new String[]{
+				"First Name", "Last Name", "Age", "Place"
+			};
+		
+			// Die Daten für das Table
+			String[][] data = new String[][]{
+				{"Sebastian", "Lindner", "23", "Java"},
+				{"", "", "", ""},
+				{"", "", "", ""},
+				{"", "", "", ""},
+				{"", "", "", ""},
+				
+			};
+
+			// Das JTable initialisieren
+			JTable table = new JTable( data, title );
+		
+			JFrame dataFrame = new JFrame( "Customor data" );
+			dataFrame.getContentPane().add( new JScrollPane( table ) );
+
+			dataFrame.pack();
+			dataFrame.setSize(800, 200);
+			dataFrame.setLocationRelativeTo(null);
+			dataFrame.setVisible( true );
+	}
+				
+		
 		/*ArrayWert des Buttons ausgeben - wird nicht benötigt aktell
 		for(int i=0;i<1;i++) {
 			if(e.getSource()==functionButtons[i]) {
@@ -349,6 +385,8 @@ public class Main extends JFrame implements ActionListener {
 		}*/
 
 	}
+
+	
 
 }
 

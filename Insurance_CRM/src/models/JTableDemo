@@ -1,0 +1,169 @@
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableModel;
+
+public class JTableDemo extends JPanel {
+	
+        // Unser TableModel (siehe unten)
+		final Model model = new Model();
+		
+		// Das JTable initialisieren
+		JTable table = new JTable( model );
+		
+		// Buttons, damit das alles schöner aussieht.
+		final JButton buttonVehicle = new JButton( "add vehicle" );
+		
+		// Den Buttons ein paar Reaktionen geben
+		buttonVehicle.addActionListener( new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				// Die Anzahl Columns (Breite) der Tabelle
+				int size = model.getRowCount();
+				
+				// einen neuen Vector mit Daten herstellen
+				Vehicle vehicle = createVehicle( size );
+				
+				// ein neues Vehikel hinzufügen
+				model.addVehicle( vehicle );
+			}
+		});
+				
+		JFrame frame = new JFrame( "Demo" );
+		
+		Container content = frame.getContentPane();
+		
+		content.add( new JScrollPane( table ), BorderLayout.CENTER );
+		content.add( buttonVehicle, BorderLayout.SOUTH );
+		
+		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		frame.pack();
+		frame.setVisible( true );
+	}
+
+    // Stellt einfach eine neue Instanz eines Vehikels her.
+	public static Vehicle createVehicle( int index ){
+		index = index % 5; // Modulo
+		
+		switch( index ){
+			case 0: return new Vehicle( "Fahrrad", 1, 2, false );
+			case 1: return new Vehicle( "Bus", 20, 4, true );
+			case 2: return new Vehicle( "Pferd", 1, 0, false );
+			case 3: return new Vehicle( "Zug", 1000, 80, true );
+			case 4: return new Vehicle( "Truck", 2, 10, true );
+			default: return null;	
+		}
+		
+	}
+}
+
+// Das Vehikel ist eine total unabhängige Klasse, die mit einer
+// Tabelle eigentlich gar nichts zu tun hat.
+class Vehicle{
+	private String name;
+	private int places, wheels;
+	private boolean motor;
+	
+	public Vehicle( String name, int places, int wheels, boolean motor ){
+		this.name = name;
+		this.places = places;
+		this.wheels = wheels;
+		this.motor = motor;
+	}
+	
+	public String getName(){ return name; }
+	public int getPlaces(){ return places; }
+	public int getWheels(){ return wheels; }
+	public boolean hasMotor(){ return motor; }
+}
+
+// Unsere Implementation des TableModels
+class Model implements TableModel{
+	private Vector vehicles = new Vector();
+	private Vector listeners = new Vector();
+	
+	public void addVehicle( Vehicle vehicle ){
+		// Das wird der Index des Vehikels werden
+		int index = vehicles.size();
+		vehicles.add( vehicle );
+		
+		// Jetzt werden alle Listeners benachrichtigt
+		
+		// Zuerst ein Event, "neue Row an der Stelle index" herstellen
+		TableModelEvent e = new TableModelEvent( this, index, index, 
+				TableModelEvent.ALL_COLUMNS, TableModelEvent.INSERT );
+		
+		// Nun das Event verschicken
+		for( int i = 0, n = listeners.size(); i<n; i++ ){
+			((TableModelListener)listeners.get( i )).tableChanged( e );
+		}
+	}
+	
+	// Die Anzahl Columns
+	public int getColumnCount() {
+		return 4;
+	}
+	
+	// Die Anzahl Vehikel
+	public int getRowCount() {
+		return vehicles.size();
+	}
+	
+	// Die Titel der einzelnen Columns
+	public String getColumnName(int column) {
+		switch( column ){
+			case 0: return "Name";
+			case 1: return "Fahrgäste";
+			case 2: return "Räder";
+			case 3: return "Besitzt Motor";
+			default: return null;
+		}
+	}
+	
+	// Der Wert der Zelle (rowIndex, columnIndex)
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		Vehicle vehicle = (Vehicle)vehicles.get( rowIndex );
+		
+		switch( columnIndex ){
+			case 0: return vehicle.getName();
+			case 1: return new Integer( vehicle.getPlaces() );
+			case 2: return new Integer( vehicle.getWheels() );
+			case 3: return vehicle.hasMotor() ? Boolean.TRUE : Boolean.FALSE; 
+			default: return null;
+		}
+	}
+
+	// Eine Angabe, welchen Typ von Objekten in den Columns angezeigt werden soll
+	public Class getColumnClass(int columnIndex) {
+		switch( columnIndex ){
+			case 0: return String.class;
+			case 1: return Integer.class;
+			case 2: return Integer.class;
+			case 3: return Boolean.class; 
+			default: return null;
+		}	
+	}
+	
+	public void addTableModelListener(TableModelListener l) {
+		listeners.add( l );
+	}
+	public void removeTableModelListener(TableModelListener l) {
+		listeners.remove( l );
+	}
+	
+
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return false;
+	}
+	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+		// nicht beachten
+	}
+}
