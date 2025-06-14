@@ -15,8 +15,9 @@ public class Main extends JFrame implements ActionListener {
 	JFrame startFrame, dataFrame;
 	JPanel startPanel, dataPanel;
 	JTextField textField;
-	JButton[] buttonArray = new JButton[6];
-	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton, deleteCustumorButton, JTableButton;
+	JButton[] buttonArray = new JButton[10];
+	JButton printCustomorButton,searchCustumorButton, addCustumorButton, updateCustumorButton;
+	JButton deleteCustumorButton, JTableButton, SQLButton;
 	Font myFont = new Font("Ink Free", Font.BOLD,20);
 	Color myBlue = new Color(30, 144, 255); // Dodger Blue
 
@@ -47,6 +48,7 @@ public class Main extends JFrame implements ActionListener {
 		updateCustumorButton = new JButton("Update an existing Customor");
 		deleteCustumorButton = new JButton("Delete a Customor");
 		JTableButton = new JButton("Teste JTable");
+		SQLButton = new JButton("1.Versuch mit SQL");
 
 		//GUI Buttons in Array speichern
 		buttonArray[0] = printCustomorButton;
@@ -55,7 +57,7 @@ public class Main extends JFrame implements ActionListener {
 		buttonArray[3] = updateCustumorButton;
 		buttonArray[4] = deleteCustumorButton;
 		buttonArray[5] = JTableButton;
-
+		buttonArray[6] = SQLButton;
 
 		//GUI panel erstellen
 		startPanel = new JPanel();
@@ -64,7 +66,7 @@ public class Main extends JFrame implements ActionListener {
 		startPanel.setBackground(myBlue);
 
 		//Buttons mit Grundfunktionen ausstatten
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < 7; i++) {
 			buttonArray[i].addActionListener((this));
 			buttonArray[i].setFont(myFont);
 			buttonArray[i].setBackground(myBlue);
