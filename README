@@ -24,9 +24,8 @@ Welcome to my first coding project for solving real world problems! This Java-ba
 ## 💡 Learned Concepts in Practice
 
 - Object-oriented programming (OOP)
-- Simple GUI with Java.swing
-   > in progress
-   > Currently developing user interfaces using Java Swing components (e.g., JFrame, JButton, JTextField) to enhance interactivity.
+- Simple GUI with Java.swing (e.g., JFrame, JButton, JTextField)
+   > done
 - Implementing JTable for creating structured user data
    > in progress
 - Connecting a SQL-Database with JDBC for data management
